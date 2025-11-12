@@ -32,13 +32,13 @@
           label="С иконкой" 
           variant="primary" 
           leadingIcon="shopping-bag"
-          iconSize="16"
+          :iconSize=16
         />
       </div>
 
       <div class="demo-item">
         <h3>Только иконка</h3>
-        <Button variant="primary" leadingIcon="burger-menu" iconSize="16px" />
+        <Button variant="primary" leadingIcon="burger-menu" :iconSize=16 />
       </div>
 
       <div class="demo-item">

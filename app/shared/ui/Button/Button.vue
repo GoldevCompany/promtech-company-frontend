@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { computed, useSlots } from 'vue'
-import { PromtechIcon, type PromtechIconName } from '../PromtechIcon'
+import { PromtechIcon, type PromtechIconName } from '../promtech-icon'
 
 export type ButtonVariant = 'primary'
 export type ButtonSize = 'sm' | 'md'
@@ -67,7 +67,7 @@ export interface ButtonProps {
     /**
      * Размер иконок
      */
-    iconSize?: string
+    iconSize?: number
     /**
      * Gap между текстом и иконкой
      */
@@ -91,7 +91,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
     size: 'md',
     type: 'button',
     disabled: false,
-    iconSize: '7px',
+    iconSize: 7,
     iconGap: '2px',
 })
 
