@@ -6,6 +6,9 @@
     </div>
 
     <div class="dev-page__content">
+      <!-- Cursor demo -->
+      <CursorSection />
+
       <!-- Link Component -->
       <LinkSection />
 
@@ -16,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import CursorSection from './component-section/cursor-section.vue';
 import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
 </script>
