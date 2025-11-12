@@ -2,7 +2,7 @@
     <component 
         :is="componentType" 
         :to="to"
-        :type="type"
+        type="button"
         :disabled="disabled"
         :class="buttonClasses"
         @click="handleClick"
@@ -47,10 +47,6 @@ export interface ButtonProps {
      */
     size?: ButtonSize
     /**
-     * Тип кнопки (для HTML button)
-     */
-    type?: 'button' | 'submit' | 'reset'
-    /**
      * Иконка слева
      */
     leadingIcon?: PromtechIconName
@@ -82,7 +78,6 @@ export interface ButtonProps {
 
 const props = withDefaults(defineProps<ButtonProps>(), {
     size: 'md',
-    type: 'button',
     disabled: false,
     iconSize: 7,
     iconGap: '2px',
