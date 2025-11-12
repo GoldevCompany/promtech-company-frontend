@@ -1,3 +1,3 @@
-export { default as Link } from './Link.vue'
-export type { LinkProps } from './Link.vue'
+export { default as Link } from './link.vue'
+export type { LinkProps } from './link.vue'
 
