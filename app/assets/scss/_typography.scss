@@ -4,7 +4,7 @@
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  src: url('public/fonts/inter-v20-cyrillic_latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('/fonts/inter-v20-cyrillic_latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* roboto-mono-regular - cyrillic_latin */
@@ -13,12 +13,12 @@
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 400;
-  src: url('public/fonts/roboto-mono-v31-cyrillic_latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url('/fonts/roboto-mono-v31-cyrillic_latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
   font-family: 'Bounded';
-  src: url('public/fonts/Bounded-Regular.woff2') format('woff2');
+  src: url('/fonts/Bounded-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -26,7 +26,7 @@
 
 @font-face {
   font-family: 'Bounded';
-  src: url('public/fonts/Bounded-Black.woff2') format('woff2');
+  src: url('/fonts/Bounded-Black.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -34,7 +34,7 @@
 
 @font-face {
   font-family: 'Bounded';
-  src: url('public/fonts/Bounded-Regular.woff2') format('woff2');
+  src: url('/fonts/Bounded-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

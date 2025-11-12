@@ -12,14 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import { PromtechIcon, type PromtechIconName } from '../PromtechIcon'
+import { PromtechIcon, type PromtechIconName } from '../promtech-icon'
 
-export interface LinkProps {
+export interface LinkProps { 
     to: string
     variant?: 'bold' | 'regular'
     label?: string
     icon?: PromtechIconName
-    iconSize?: string
+    iconSize?: number
 }
 
 withDefaults(defineProps<LinkProps>(), {

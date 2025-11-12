@@ -40,12 +40,12 @@
 
       <div class="demo-item">
         <h3>С большой иконкой (32px)</h3>
-        <Link to="/" label="Большая иконка" icon="arrow" iconSize="32px" />
+        <Link to="/" label="Большая иконка" icon="arrow" :iconSize=32 />
       </div>
 
       <div class="demo-item">
         <h3>С маленькой иконкой (12px)</h3>
-        <Link to="/" label="Маленькая иконка" icon="shopping-bag" iconSize="12px" />
+        <Link to="/" label="Маленькая иконка" icon="shopping-bag" :iconSize=12 />
       </div>
     </div>
 

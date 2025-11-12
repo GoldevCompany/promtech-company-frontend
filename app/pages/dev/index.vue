@@ -12,8 +12,11 @@
       <!-- Link Component -->
       <LinkSection />
 
-      <!-- PromtechIcon Component -->
+      <!-- promtech-icon Component -->
       <IconSection />
+
+      <!-- Button Component -->
+      <ButtonSection />
     </div>
   </div>
 </template>
@@ -22,6 +25,7 @@
 import CursorSection from './component-section/cursor-section.vue';
 import IconSection from './component-section/icon-section.vue';
 import LinkSection from './component-section/link-section.vue';
+import ButtonSection from './component-section/button-section.vue';
 </script>
 
 <style lang="scss">
