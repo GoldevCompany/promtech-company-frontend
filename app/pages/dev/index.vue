@@ -12,7 +12,7 @@
       <!-- Link Component -->
       <LinkSection />
 
-      <!-- PromtechIcon Component -->
+      <!-- promtech-icon Component -->
       <IconSection />
 
       <!-- Button Component -->
