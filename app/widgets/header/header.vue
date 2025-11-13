@@ -30,8 +30,8 @@
       <!-- Actions -->
       <div class="header__actions">
         <NuxtLink 
-          v-if="showBag" 
-          to="#" 
+          v-if="showBasket"
+          to="/basket"
           class="header__bag"
         >
           <span class="header__bag-label">Корзина</span>
@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref ,computed } from 'vue'
 import { Button, PromtechIcon } from '@/shared'
 
 export interface HeaderLinkProps {
@@ -59,9 +59,10 @@ export interface HeaderLinkProps {
   label: string
 }
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   links?: HeaderLinkProps[]
-  showBag?: boolean
+  showBasket?: boolean,
+  half_transparent?: boolean
 }>(), {
   links: () => [
     { to: '/', label: 'Главная' },
@@ -69,22 +70,32 @@ withDefaults(defineProps<{
     { to: '#', label: 'Комплектующие' },
     { to: '#', label: 'Контакты' },
   ],
-  showBag: true,
+  showBasket: true,
+  half_transparent: false,
 })
 
 const isMenuOpen = ref(false)
+
+const headerBackground = computed(() => {
+  return props.half_transparent
+      ? 'var(--bg-transparent)'
+      : 'var(--bg-solid)';
+});
 </script>
 
 <style scoped lang="scss">
 .header {
-  background: #293133;
+  --bg-solid: #{$background-5};
+  --bg-transparent: #{$background-6};
+
+  background: v-bind(headerBackground);
   color: $text-main;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1;
 
   &__inner {
     margin: 0 auto;
@@ -127,7 +138,7 @@ const isMenuOpen = ref(false)
     top: 100%;
     left: 0;
     right: 0;
-    background: #293133;
+    background: v-bind(headerBackground);
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -137,14 +148,12 @@ const isMenuOpen = ref(false)
     &--open {
       max-height: 500px;
       opacity: 1;
-      padding-top: 20px; // Добавляем только верхний padding при открытии
-      padding-bottom: 20px;
     }
   }
 
   &__nav-list {
     list-style: none;
-    padding: 0;
+    padding: 20px 0;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -193,8 +202,7 @@ const isMenuOpen = ref(false)
     flex-shrink: 0;
   }
 
-  // Tablet layout (≥800px)
-  @media (min-width: 800px) {
+  @media (min-width: $breakpoint-tablet) {
     &__inner {
       padding: 30px 40px 10px;
       display: grid;
@@ -246,8 +254,8 @@ const isMenuOpen = ref(false)
     }
   }
 
-  // Desktop layout (≥1280px)
-  @media (min-width: 1280px) {
+  // Desktop layout
+  @media (min-width: $breakpoint-desktop) {
     &__inner {
       padding: 30px 40px 10px;
       display: flex;
