@@ -32,9 +32,14 @@ import { Cursor } from '~/shared';
 </template>
 
 
-<style scoped lang="scss">
+<style lang="scss">
 nav {
   display: flex;
   gap: .5rem;
+}
+
+#__nuxt {
+  width: 100%;
+  min-height: 100vh;
 }
 </style>
