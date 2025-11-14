@@ -45,7 +45,7 @@ defineEmits<{
   border-bottom: 1px solid white;
   padding: 8px 2px;
 
-  @include link;
+  @include link2;
   color: $text-main;
 
   &:focus {

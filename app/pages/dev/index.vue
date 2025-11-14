@@ -18,6 +18,10 @@
       <!-- Link Component -->
       <LinkSection />
 
+      <!-- FileInput Component -->
+      <FileInputSection/>
+
+      <!-- TextField Component -->
       <TextFieldSection/>
 
       <!-- promtech-icon Component -->
@@ -48,6 +52,7 @@ import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
 import TextFieldSection from "~/pages/dev/component-section/text-field-section.vue";
 import { Footer } from '~/widgets';
+import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
 </script>
 
 <style lang="scss">
