@@ -8,13 +8,22 @@
         Текущее значение в поле: {{ value }}
       </p>
     </div>
+
+    <div class="demo-item">
+      <TextField placeholder="Телефон" v-model="value1" :mask="'+7 (###) ### ## ##'"/>
+
+      <p style="color: white; margin-top: 20px;">
+        Текущее значение в поле: {{ value1 }}
+      </p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {Link, TextField} from '@/shared'
+import {TextField} from '@/shared'
 
 let value = ref('');
+let value1 = ref('');
 </script>
 
 <style scoped lang="scss">

@@ -6,18 +6,22 @@
         :value="modelValue"
         :placeholder="placeholder"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+        v-maska :data-maska="mask"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import { vMaska } from 'maska/vue'
 
 withDefaults(defineProps<{
   modelValue: string;
   placeholder?: string;
+  mask?: string;
 }>(), {
   placeholder: '',
   modelValue: '',
+  mask: '',
 });
 
 defineEmits<{
