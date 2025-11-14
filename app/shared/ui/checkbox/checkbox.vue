@@ -4,7 +4,7 @@
         type="checkbox"
         class="native-checkbox"
         :checked="modelValue"
-        @change="$emit('update:modelValue', $event.target.checked)"
+        @change="modelValue = $event.target.checked"
     />
 
     <span class="checkbox-box">
@@ -21,14 +21,10 @@
 <script setup>
 import {PromtechIcon} from '@/shared'
 
-defineProps({
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
+const modelValue = defineModel({
+  type: Boolean,
+  default: false,
 })
-
-defineEmits(['update:modelValue'])
 </script>
 
 <style lang="scss" scoped>

@@ -3,9 +3,8 @@
     <input
         type="text"
         class="text-input__field"
-        :value="modelValue"
+        v-model="modelValue"
         :placeholder="placeholder"
-        @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         v-maska :data-maska="mask"
     />
   </div>
@@ -14,19 +13,15 @@
 <script setup lang="ts">
 import { vMaska } from 'maska/vue'
 
+const modelValue = defineModel<string>({ default: '' })
+
 withDefaults(defineProps<{
-  modelValue: string;
   placeholder?: string;
   mask?: string;
 }>(), {
   placeholder: '',
-  modelValue: '',
   mask: '',
 });
-
-defineEmits<{
-  (e: 'update:modelValue', value: string): void;
-}>();
 
 </script>
 

@@ -13,8 +13,9 @@
 <script setup lang="ts">
 import {PromtechIcon} from '@/shared/ui';
 
+const modelValue = defineModel<File | undefined>();
+
 const props = withDefaults(defineProps<{
-  modelValue: File | undefined;
   placeholder?: string;
   error?: boolean;
 }>(), {
@@ -22,12 +23,8 @@ const props = withDefaults(defineProps<{
   error: false,
 });
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: File | undefined): void;
-}>();
-
 const displayText = computed(() => {
-  return props.modelValue?.name || props.placeholder;
+  return modelValue.value?.name || props.placeholder;
 });
 
 const handleFileChange = (event: Event) => {
@@ -35,9 +32,9 @@ const handleFileChange = (event: Event) => {
   const files = input.files;
 
   if (files && files.length > 0) {
-    emit('update:modelValue', files[0]);
+    modelValue.value = files[0];
   } else {
-    emit('update:modelValue', undefined);
+    modelValue.value = undefined;
   }
 };
 

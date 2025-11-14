@@ -2,25 +2,25 @@
   <div class="feedback-container" :style="backgroundStyles">
     <div class="feedback-container__label">Свяжитесь с нами</div>
     <div class="feedback-container__form">
-      <TextField placeholder="Фамилия и имя" v-model="name"/>
-      <TextField placeholder="Название организации" v-model="organisation"/>
+      <TextField placeholder="Фамилия и имя" v-model="formState.name.value"/>
+      <TextField placeholder="Название организации" v-model="formState.organisation.value"/>
       <div class="feedback-container__form__narrow">
-        <TextField placeholder="Электронная почта" v-model="email"/>
-        <TextField placeholder="Номер телефона" v-model="phone" :mask="'+7 (###) ### ## ##'"/>
+        <TextField placeholder="Электронная почта" v-model="formState.email.value"/>
+        <TextField placeholder="Номер телефона" v-model="formState.phone.value" :mask="'+7 (###) ### ## ##'"/>
       </div>
       <div class="feedback-container__form__files">
-        <FileInput placeholder="Прикрепить карточку организации" v-model="fileOrgCard"/>
-        <FileInput placeholder="Прикрепить техническое задание" v-model="fileTask"/>
+        <FileInput placeholder="Прикрепить карточку организации" v-model="formState.fileOrgCard.value"/>
+        <FileInput placeholder="Прикрепить техническое задание" v-model="formState.fileTask.value"/>
       </div>
-      <TextField placeholder="Комментарий" v-model="comment"/>
-      <Checkbox v-model="agreement">
+      <TextField placeholder="Комментарий" v-model="formState.comment.value"/>
+      <Checkbox v-model="formState.agreement.value">
         <span>Согласен с <Link label="Правилами обработки персональных данных" to="#" variant="bold"/></span>
       </Checkbox>
       <Button
-          label="Оставить заявку"
-          trailingIcon="arrow"
-          width="100%"
-          :disabled="isButtonDisabled"
+        label="Оставить заявку"
+        trailingIcon="arrow"
+        width="100%"
+        :disabled="isButtonDisabled"
       />
     </div>
   </div>
@@ -29,26 +29,33 @@
 <script setup lang="ts">
 import {Checkbox, FileInput, Link, TextField, Button} from '@/shared'
 
-let name = ref('');
-let organisation = ref('');
-let email = ref('');
-let phone = ref('');
-let comment = ref('');
+const formState = reactive({
+  name: { value: '', required: true },
+  organisation: { value: '', required: true },
+  email: { value: '', required: true },
+  phone: { value: '', required: true },
+  comment: { value: '', required: false },
+  fileOrgCard: { value: undefined as File | undefined, required: true },
+  fileTask: { value: undefined as File | undefined, required: false },
+  agreement: { value: false, required: true }
+});
 
-const fileOrgCard = ref<File | undefined>(undefined);
-const fileTask = ref<File | undefined>(undefined);
+const isFieldEmpty = (field: { value: any }): boolean => {
+  const { value } = field;
+  if (typeof value === 'string') {
+    return value.trim() === '';
+  }
+  if (typeof value === 'boolean') {
+    return !value;
+  }
+  return value === undefined || value === null;
 
-let agreement = ref(false);
+};
 
 const isButtonDisabled = computed(() => {
-  return (
-      name.value.trim() === '' ||
-      organisation.value.trim() === '' ||
-      email.value.trim() === '' ||
-      phone.value.trim() === '' ||
-      !fileOrgCard.value ||
-      !agreement.value
-  );
+  return Object.values(formState)
+      .filter(field => field.required)
+      .some(field => isFieldEmpty(field));
 });
 
 const $img = useImage();
