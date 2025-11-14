@@ -64,7 +64,7 @@ import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue"
 <style lang="scss">
 .dev-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: $background-1;
   color: #fff;
   padding-top: 100px; // Отступ для fixed header
 
