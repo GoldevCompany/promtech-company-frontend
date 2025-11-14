@@ -30,6 +30,8 @@
       <!-- Button Component -->
       <ButtonSection />
     </div>
+
+    <Feedback></Feedback>
     <div class="dev-page__footer">
       <div class="container">
         <h2 class="component-section__title">Подвал сайта(footer)</h2>
@@ -53,6 +55,7 @@ import ButtonSection from './component-section/button-section.vue';
 import TextFieldSection from "~/pages/dev/component-section/text-field-section.vue";
 import { Footer } from '~/widgets';
 import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
+import Feedback from "~/widgets/feedback/feedback.vue";
 </script>
 
 <style lang="scss">
