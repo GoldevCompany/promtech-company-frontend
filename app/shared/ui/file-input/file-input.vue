@@ -49,6 +49,7 @@ const handleFileChange = (event: Event) => {
   align-items: center;
   gap: 20px;
   cursor: pointer;
+  width: 100%;
 
   color: $text-additional;
   @include link2;

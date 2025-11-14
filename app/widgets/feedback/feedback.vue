@@ -8,17 +8,27 @@
         <TextField placeholder="Электронная почта" />
         <TextField placeholder="Номер телефона" />
       </div>
-      <div class="feedback-container__form__narrow">
+      <div class="feedback-container__form__files">
         <FileInput placeholder="Прикрепить карточку организации" :model-value="undefined"/>
         <FileInput placeholder="Прикрепить техническое задание" :model-value="undefined"/>
       </div>
       <TextField placeholder="Комментарий" />
+      <Checkbox v-model="agreement">
+        <span>Согласен с <Link label="Правилами обработки персональных данных" to="#" variant="bold"/></span>
+      </Checkbox>
+      <Button
+          label="Оставить заявку"
+          trailingIcon="arrow"
+          width="100%"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {FileInput, TextField} from '@/shared'
+import {Checkbox, FileInput, Link, TextField, Button} from '@/shared'
+
+let agreement = ref(false);
 
 </script>
 
@@ -26,8 +36,9 @@ import {FileInput, TextField} from '@/shared'
 .feedback-container {
   display: grid;
   padding: 30px 40px ;
-
+  gap:40px;
   background-color: $error;
+  text-align: center;
 
   grid-template-columns: 1fr;
 
@@ -35,6 +46,7 @@ import {FileInput, TextField} from '@/shared'
     grid-template-columns: 1fr 1fr;
     gap: 135px;
     padding: 46px 40px ;
+    text-align: start;
   }
 
   @media (min-width: $breakpoint-desktop) {
@@ -47,9 +59,24 @@ import {FileInput, TextField} from '@/shared'
   }
 
   &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     &__narrow {
       display: flex;
       flex-direction: row;
+      gap: 20px;
+    }
+    &__files {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      @media (min-width: $breakpoint-tablet) {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
     }
   }
 }
