@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import {PromtechIcon, Link} from '@/shared'
+import {PromtechIcon} from '@/shared'
 
 defineProps({
   modelValue: {

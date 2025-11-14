@@ -2,7 +2,7 @@
   <section class="component-section">
     <h2 class="component-section__title">PromtechIcon Component</h2>
     <p class="component-section__description">
-      Компонент для отображения SVG иконок проекта<br></br>
+      Компонент для отображения SVG иконок проекта<br/>
       Размер {{ size }}
       <input type="range" min="0" max="56" v-model="size">
     </p>
