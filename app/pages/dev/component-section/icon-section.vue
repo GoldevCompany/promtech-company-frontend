@@ -17,6 +17,14 @@
       </div>
 
       <div class="demo-item">
+        <h3>check</h3>
+        <div class="icon-demo">
+          <PromtechIcon name="check" :icon-size="size" />
+        </div>
+        <code>name="arrow"</code>
+      </div>
+
+      <div class="demo-item">
         <h3>burger-menu</h3>
         <div class="icon-demo">
           <PromtechIcon name="burger-menu" :icon-size="size" />

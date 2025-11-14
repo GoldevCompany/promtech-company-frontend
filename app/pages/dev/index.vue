@@ -16,6 +16,8 @@
       <CursorSection />
 
       <!-- Link Component -->
+      <CheckboxSection/>
+      <!-- Link Component -->
       <LinkSection />
 
       <!-- FileInput Component -->
@@ -56,6 +58,7 @@ import TextFieldSection from "~/pages/dev/component-section/text-field-section.v
 import { Footer } from '~/widgets';
 import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
 import Feedback from "~/widgets/feedback/feedback.vue";
+import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue";
 </script>
 
 <style lang="scss">

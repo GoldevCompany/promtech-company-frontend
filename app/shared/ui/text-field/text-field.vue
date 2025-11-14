@@ -34,27 +34,29 @@ defineEmits<{
 .text-input {
   width: 100%;
   position: relative;
-}
 
-.text-input__field {
-  width: 100%;
-  display: block;
+  &__field {
+    width: 100%;
+    display: block;
 
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid white;
-  padding: 8px 2px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    padding: 8px 2px;
 
-  @include link2;
-  color: $text-main;
-
-  &:focus {
-    outline: none;
-  }
-
-  &::placeholder {
     @include link2;
-    color: $text-additional;
+    color: $text-main;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      @include link2;
+      color: $text-additional;
+    }
   }
 }
+
+
 </style>
