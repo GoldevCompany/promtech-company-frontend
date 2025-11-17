@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { PromtechIcon, type PromtechIconName } from '@/shared'
+import { PromtechIcon, type PromtechIconName } from '~/shared'
 
 interface AboutUsItem {
   icon: PromtechIconName
