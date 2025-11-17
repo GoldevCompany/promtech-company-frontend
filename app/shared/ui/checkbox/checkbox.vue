@@ -7,7 +7,7 @@
     />
 
     <span class="custom-checkbox__box">
-      <PromtechIcon v-if="modelValue" name="check" />
+      <PromtechIcon v-show="modelValue" name="check" />
     </span>
 
     <span class="custom-checkbox__label">
