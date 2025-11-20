@@ -1,10 +1,10 @@
 <template>
   <h2>Главная страница</h2>
-  <Faq/>
-  <OurAdvantages/>
-  <ExtraService/>
-  <OurPartnersWidget />
   <AboutUs/>
+  <OurPartnersWidget />
+  <ExtraService/>
+  <OurAdvantages/>
+  <Faq/>
 </template>
 
 <script setup lang="ts">
