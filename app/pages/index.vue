@@ -4,6 +4,6 @@
   <AboutUs/>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { AboutUs, OurPartnersWidget} from '~/widgets'
 </script>
