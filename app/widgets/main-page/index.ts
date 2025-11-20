@@ -1,5 +1,6 @@
 export * from './hero-section'
 export * from './hero-section-new'
+export * from './faq'
 export * from './our-partners'
 export * from './about-us'
 export * from './extra-service'

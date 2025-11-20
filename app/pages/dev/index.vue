@@ -39,6 +39,7 @@
       <!-- About Us Widget -->
       <AboutUsSection />
     </div>
+    <Faq/>
     <OurAdvantages />
     
     <!-- Our Partners Component -->
@@ -66,6 +67,7 @@ import MainPageHeroSection from './component-section/main-page-hero.vue';
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
 import AboutUsSection from './component-section/about-us-section.vue';
 import TextFieldSection from "~/pages/dev/component-section/text-field-section.vue";
+import { Faq } from '~/widgets';
 import { OurAdvantages } from '~/widgets';
 import OurPartnersSection from './component-section/our-partners-section.vue';
 import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
