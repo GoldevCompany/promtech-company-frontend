@@ -49,8 +49,8 @@ onUnmounted(() => document.removeEventListener('mousemove', mouseMoveHandler))
   pointer-events: none;
   transform: translate(-50%, -50%);
   background: $accent;
-  top: v-bind(ycoord);
-  left: v-bind(xcoord);
+  top: v-bind(yCoord);
+  left: v-bind(xCoord);
   transition: all 0.3s ease-in-out, top 0s, left 0s;
 }
 </style>

@@ -16,6 +16,7 @@ export default {
         'media-query-no-invalid': null,
         'declaration-property-value-no-unknown': null,
         'property-no-deprecated': null,
+        'value-keyword-case': null,
         'scss/operator-no-unspaced': null,
     },
     ignoreFiles: [

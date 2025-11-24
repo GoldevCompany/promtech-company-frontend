@@ -114,7 +114,7 @@ const handleClick = (event: MouseEvent) => {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: v-bind(icongap);
+    gap: v-bind(iconGap);
     width: v-bind(width);
     border: none;
     border-radius: 0;
