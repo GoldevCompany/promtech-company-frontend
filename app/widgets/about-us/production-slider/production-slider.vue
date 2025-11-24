@@ -16,6 +16,7 @@
 
       <div class="gallery-page__content">
         <Swiper
+          :modules="[Navigation]"
           :slides-per-view="3.7"
           :space-between="20"
           :navigation="{
@@ -31,8 +32,8 @@
 
      
         <div class="gallery-nav">
-          <button class="nav-btn nav-btn_prev swiper-button-prev"></button>
-          <button class="nav-btn nav-btn_next swiper-button-next"></button>
+          <button class="nav-btn nav-btn_prev"></button>
+          <button class="nav-btn nav-btn_next"></button>
         </div>
       </div>
     </div>
@@ -56,7 +57,10 @@ const images = [
 </script>
 
 <style lang="scss" scoped>
-
+::v-deep(.swiper-button-prev),
+::v-deep(.swiper-button-next) {
+  display: none !important;
+}
 
 
 .gallery-page {
@@ -183,11 +187,11 @@ const images = [
 }
 
  
-  .swiper-button-prev,
-  .swiper-button-next {
-    position: static;
-    margin: 0;
-  }
+  // .swiper-button-prev,
+  // .swiper-button-next {
+  //   position: static;
+  //   margin: 0;
+  // }
   
 }
 
