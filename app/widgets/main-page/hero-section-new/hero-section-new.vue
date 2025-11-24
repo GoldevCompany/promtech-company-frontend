@@ -90,12 +90,12 @@ const onVideoEnded = () => {
 
   &__block {
     position: absolute;
-    width: 388/1280 * 100%;
+    width: calc(388/1280 * 100%);
     background: $accent;
     z-index: 2;
 
     &--top {
-      left: 190/1280 * 100%;
+      left: calc(190/1280 * 100%);
       top: 0;
       height: 0;
       opacity: 0;
@@ -105,12 +105,12 @@ const onVideoEnded = () => {
 
       &.hero__block--visible {
         opacity: 1;
-        height: 526/730 * 100%;
+        height: calc(526/730 * 100%);
       }
     }
 
     &--bottom {
-      left: 190/1280 * 100%;
+      left: calc(190/1280 * 100%);
       bottom: 0;
       height: 0;
       opacity: 0;
@@ -120,7 +120,7 @@ const onVideoEnded = () => {
 
       &.hero__block--visible {
         opacity: 1;
-        height: 46/730 * 100%;
+        height: calc(46/730 * 100%);
       }
     }
   }

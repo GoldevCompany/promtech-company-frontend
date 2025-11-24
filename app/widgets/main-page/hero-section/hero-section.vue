@@ -45,7 +45,6 @@
       <div class="hero__description-content container">
         <div class="hero__description-text-block">
           <p class="hero__description-text">
-            <span class="hero__description-text-tab">&emsp;</span>
             Горное оборудование
             и сервис, которым доверяют профессионалы
           </p>
@@ -123,12 +122,12 @@ const backgroundStyles = computed(() => {
 
   &__block {
     position: absolute;
-    width: 388/1280 * 100%;
+    width: calc(388/1280 * 100%);
     background: $accent;
     z-index: 2;
 
     &--top {
-      left: 190/1280 * 100%;
+      left: calc(190/1280 * 100%);
       top: 0;
       height: 0;
       opacity: 0;
@@ -138,12 +137,12 @@ const backgroundStyles = computed(() => {
 
       &.hero__block--visible {
         opacity: 1;
-        height: 526/730 * 100%;
+        height: calc(526/730 * 100%);
       }
     }
 
     &--bottom {
-      left: 190/1280 * 100%;
+      left: calc(190/1280 * 100%);
       bottom: 0;
       height: 0;
       opacity: 0;
@@ -153,7 +152,7 @@ const backgroundStyles = computed(() => {
 
       &.hero__block--visible {
         opacity: 1;
-        height: 46/730 * 100%;
+        height: calc(46/730 * 100%);
       }
     }
   }
@@ -201,13 +200,14 @@ const backgroundStyles = computed(() => {
     display: flex;
     flex-direction: column;
     gap: 48px;
+    overflow: hidden;
 
     &::before {
       content: '';
       position: absolute;
       inset: 0;
       z-index: -1;
-      opacity: 0.6;
+      opacity: 0.5;
       overflow: hidden;
       pointer-events: none;
       background: var(--bg-image);
@@ -215,6 +215,7 @@ const backgroundStyles = computed(() => {
       background-position: center;
       background-repeat: no-repeat;
       filter: brightness(0.4) contrast(1) saturate(0.1);
+      transform: scale(1.4, 3);
     }
   }
 
@@ -241,12 +242,14 @@ const backgroundStyles = computed(() => {
 
     color: $text-main;
 
-    &-tab {
-      display: hidden;
 
-      @media (min-width: $breakpoint-tablet) {
-        display: inline;
-      }
+    @media (min-width: $breakpoint-tablet) {
+      width: 558px;
+      text-indent: 17%;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: 860px;
     }
   }
 
@@ -263,6 +266,14 @@ const backgroundStyles = computed(() => {
     color: $text-additional;
     text-align: right;
     width: 233px;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 300px;
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      width: 318px;
+    }
   }
 }
 </style>
