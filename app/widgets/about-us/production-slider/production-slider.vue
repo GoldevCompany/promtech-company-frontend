@@ -34,7 +34,7 @@
           class="gallery-slider"
         >
           <SwiperSlide v-for="(img, i) in images" :key="i" :class="{'slide-offset': i === 2}">
-            <img :src="img" class="gallery-slide__img" />
+            <NuxtImg :src="img" class="gallery-slide__img" />
           </SwiperSlide>
         </Swiper>
 
