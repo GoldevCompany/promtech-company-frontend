@@ -8,7 +8,7 @@
       </p>
     </div>
 
-    <div class="dev-page__content">
+    <div class="dev-page__content container">
       <!-- Cursor demo -->
       <CursorSection />
 
@@ -41,18 +41,6 @@
       <MapSection />
 
       <AdressSection />
-    </div>
-    <div class="dev-page__footer">
-      <div class="container">
-        <h2 class="component-section__title">
-          Подвал сайта(footer)
-        </h2>
-        <p class="component-section__description">
-          Компонент подвала сайта, для просмотра возможностей адаптивности
-          следует
-          изменить ширину окна браузера
-        </p>
-      </div>
     </div>
   </div>
 </template>
@@ -108,9 +96,6 @@ import { AdressSection, MapSection } from '~/widgets/contacts';
   }
 
   &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px 40px;
     display: flex;
     flex-direction: column;
     gap: 60px;
