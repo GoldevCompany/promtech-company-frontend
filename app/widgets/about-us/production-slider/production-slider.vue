@@ -9,7 +9,8 @@
         <div class="gallery-page__inner">
           <h3 class="gallery-page__title">Наше производство</h3>
           <p class="gallery-page__text">
-            Производственный процесс в действии.<br>Работаем с вниманием к каждой детали.
+            Производственный процесс в действии.
+            <br>Работаем с вниманием к каждой детали.
           </p>
         </div>
       </div>
@@ -40,13 +41,15 @@
      
         <div class="gallery-nav">
           <Button 
-          leading-icon="arrow-left"
-          icon-size="25" 
-          class="nav-btn nav-btn_prev" />
+          leading-icon="arrowBack"
+          :icon-size="25" 
+          class="nav-btn nav-btn_prev" 
+          />
           <Button 
-          leading-icon="arrow-right" 
-          icon-size="25" 
-          class="nav-btn nav-btn_next"/>
+          leading-icon="arrowForward" 
+          :icon-size="25" 
+          class="nav-btn nav-btn_next" 
+          />
         </div>
       </div>
     </div>
@@ -111,9 +114,9 @@ const images = [
     align-items: center;
     justify-content: space-between;
     @media (max-width: 799px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
   }
  
@@ -132,8 +135,7 @@ const images = [
     @media (max-width: 799px) {
       text-align: left;
     }
-    
-    
+
   }
 
   &__content {
@@ -145,7 +147,6 @@ const images = [
     width: 100%;
   
     .gallery-slide__img {
-
       width: 100%;
       object-fit: cover;
       display: block; 
