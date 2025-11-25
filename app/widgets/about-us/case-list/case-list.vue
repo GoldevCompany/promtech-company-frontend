@@ -9,7 +9,7 @@
           <h3 class="cases__title">
             Опыт в деле
           </h3>
-          <p class="cases__description">
+          <p class="cases__text">
             Реальные примеры выполненных проектов и решений для наших клиентов
           </p>
         </div>
@@ -22,10 +22,13 @@
           :style="{ backgroundImage: 'url(' + caseItem.image + ')' }"
         >
           <div class="case-card__content">
-            <h3 class="case-card__title">
-              {{ caseItem.title }}
-            </h3>
-            <span class="case-card__number">{{ caseItem.number }}</span>
+            <div class="case-card__inner">
+                <h5 class="case-card__title">
+                  {{ caseItem.title }}
+                </h5>
+                <h4 class="case-card__number">{{ caseItem.number }}</h4>
+            </div>
+            
             <p class="case-card__text">
               {{ caseItem.text }}
             </p>
@@ -43,67 +46,109 @@ const cases = [
         number: '01',
         title: 'Восстановление моста',
         text: 'Описание кейса, описание кейса',
-        image: '/img/cases/case1.jpg'
+        image: '/images/case-zaglushka.png'
     },
     {
         id: 2,
         number: '02',
         title: 'Кейс',
         text: 'Описание кейса, описание кейса',
-        image: '/img/cases/case2.jpg'
+        image: '/images/case-zaglushka.png'
     },
     {
         id: 3,
         number: '03',
         title: 'Кейс',
         text: 'Описание кейса, описание кейса',
-        image: '/img/cases/case3.jpg'
+        image: '/images/case-zaglushka.png'
     },
     {
         id: 4,
         number: '04',
         title: 'Кейс',
         text: 'Описание кейса, описание кейса',
-        image: '/img/cases/case4.jpg'
+        image: '/images/case-zaglushka.png'
     },
     {
         id: 5,
         number: '05',
         title: 'Кейс',
         text: 'Описание кейса, описание кейса',
-        image: '/img/cases/case5.jpg'
+        image: '/images/case-zaglushka.png'
     },
     {
         id: 6,
         number: '06',
-        title: 'Разработка кассеты под требования Заказчика (бетономешалка)',
+        title: 'Кейс',
         text: 'Описание кейса, описание кейса',
-        image: '/img/cases/case6.jpg'
+        image: '/images/case-zaglushka.png'
     }
 ];
 </script>
 
 <style lang="scss" scoped>
 .cases {
-
- 
-
- 
+  margin-bottom: 128px;
 
   &__subtitle {
     @include headline6;
    
   }
 
-  &__title {
-   @include headline3;
+  &__inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  &__description {
+  &__title {
+   @include headline3;
+   white-space: nowrap;
+  }
+
+  &__text {
    @include text3;
+   text-align: right;
+  }
+
+  &__grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px; 
+    padding-top: 60px;
   }
 
   
+  
+}
+
+.case-card {
+
+  max-height: 300px;
+  border: 1px solid $background-2;
+  
+
+  &__content {
+    padding: 22px 31px 22px 20px;
+  }
+
+  &__inner{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    @include headline5;
+  }
+
+  &__number {
+    @include headline4;
+  }
+
+  &__text {
+    @include text3;
+    padding-top: 100px;
+  }
 }
 
 
