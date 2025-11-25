@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { isMockEnabled } from '@/shared/lib/mock'
 import type { Category, MachineCard, MachineFullCard } from '@/shared/types'
 import { catalogCategoriesMock, catalogCategoryMachinesMock, catalogMachinesMock } from '@/shared/mocks/catalog'
+import axios from "axios";
 
 interface CatalogState {
   categories: Category[]
@@ -12,103 +13,101 @@ interface CatalogState {
 }
 
 export const useCatalogStore = defineStore('catalog', {
-    state: (): CatalogState => ({
-        categories: [],
-        machinesInCurrentCategory: [],
-        currentMachine: null,
-        isLoading: false,
-        error: null,
-    }),
-    actions: {
-        async getCategories() {
-            this.startLoading()
-            try {
-                const categories = await (async () => {
-                    if (isMockEnabled()) {
-                        await setTimeout(() => {
-                            return catalogCategoriesMock
-                        }, 1000)
-                    }
+  state: (): CatalogState => ({
+    categories: [],
+    machinesInCurrentCategory: [],
+    currentMachine: null,
+    isLoading: false,
+    error: null,
+  }),
+  actions: {
+    async getCategories() {
+      this.startLoading()
+      try {
+        let data: Category[] = [];
 
-                    // TODO: запрос на получение категорий
-                    return []
-                })()
+        if (isMockEnabled()) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          data = catalogCategoriesMock;
+        } else {
+          const response = await axios.get<Category[]>('/api/v1/Categories');
+          data = response.data;
+        }
 
-                this.categories = categories
-                return categories
-            } catch (error) {
-                this.handleError(error)
-                return []
-            } finally {
-                this.finishLoading()
-            }
-        },
-        async fetchCategoryMachines(categoryId: string) {
-            if (!categoryId) {
-                return []
-            }
-
-            this.startLoading()
-            try {
-                const machines = await (async () => {
-                    if (isMockEnabled()) {
-                        await setTimeout(() => {
-                            return catalogCategoryMachinesMock[categoryId] ?? []
-                        }, 1000)
-                    }
-
-                    // TODO: запрос на получение машин по категории categoryId
-                    return []
-                })()
-
-                this.machinesInCurrentCategory = machines
-                return machines
-            } catch (error) {
-                this.handleError(error)
-                return []
-            } finally {
-                this.finishLoading()
-            }
-        },
-        async fetchMachineById(machineId: string) {
-            this.startLoading()
-            try {
-                const machine = await (async () => {
-                    if (isMockEnabled()) {
-                        await setTimeout(() => {
-                            return catalogMachinesMock[machineId]
-                        }, 1000) ?? null
-                    }
-
-                    // TODO: запрос на получение машины по id
-                    return null
-                })()
-
-                this.currentMachine = machine
-                return machine
-            } catch (error) {
-                this.handleError(error)
-                return null
-            } finally {
-                this.finishLoading()
-            }
-        },
-        reset() {
-            this.categories = []
-            this.machinesInCurrentCategory = []
-            this.error = null
-            this.isLoading = false
-        },
-        startLoading() {
-            this.isLoading = true
-            this.error = null
-        },
-        finishLoading() {
-            this.isLoading = false
-        },
-        handleError(error: unknown) {
-            this.error = error instanceof Error ? error.message : 'Неизвестная ошибка каталога'
-        },
+        this.categories = data;
+        return data;
+      } catch (error) {
+        this.handleError(error);
+        return [];
+      } finally {
+        this.finishLoading();
+      }
     },
+    async fetchCategoryMachines(categoryId: string) {
+      if (!categoryId) return [];
+
+      this.startLoading();
+      try {
+        let data: MachineCard[] = [];
+
+        if (isMockEnabled()) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          data = catalogCategoryMachinesMock[categoryId] ?? [];
+        } else {
+          const response = await axios.get<MachineCard[]>(`/api/v1/Categories/${categoryId}`);
+          data = response.data;
+        }
+
+        this.machinesInCurrentCategory = data;
+        return data;
+      } catch (error) {
+        this.handleError(error);
+        return [];
+      } finally {
+        this.finishLoading();
+      }
+    },
+    async fetchMachineById(machineId: string) {
+      if (!machineId) return null;
+
+      this.startLoading();
+      try {
+        let data: MachineFullCard | null = null;
+
+        if (isMockEnabled()) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          data = catalogMachinesMock[machineId] ?? null;
+        } else {
+          const response = await axios.get<MachineFullCard>(`/api/v1/machines/${machineId}`);
+          data = response.data;
+        }
+
+        this.currentMachine = data;
+        return data;
+      } catch (error) {
+        this.handleError(error);
+        return null;
+      } finally {
+        this.finishLoading();
+      }
+    },
+    reset() {
+      this.categories = [];
+      this.machinesInCurrentCategory = [];
+      this.error = null;
+      this.isLoading = false;
+      this.currentMachine = null;
+    },
+    startLoading() {
+      this.isLoading = true;
+      this.error = null;
+    },
+    finishLoading() {
+      this.isLoading = false;
+    },
+    handleError(error: unknown) {
+      this.error = error instanceof Error ? error.message : 'Неизвестная ошибка каталога';
+    },
+  },
 })
 
