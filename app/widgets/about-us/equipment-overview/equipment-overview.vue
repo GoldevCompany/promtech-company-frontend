@@ -23,10 +23,10 @@
 <script setup lang="ts">
 </script>
 
-<style scoped lang="scss" >
+<style scoped lang="scss">
 .equipment-overview {
     margin-top: 128px;
-    margin-bottom:68px;
+    margin-bottom: 68px;
   &__inner {
     display: flex;        
     align-items: flex-start;    
@@ -40,7 +40,7 @@
   &__img{
     width: 710px;
     @media (max-width: $breakpoint-tablet) {
-        max-width:350px
+        max-width: 350px
     }
   }
   &__content{
@@ -50,11 +50,9 @@
   }
   &__title{
     @include headline5;
-    padding-bottom:20px;
+    padding-bottom: 20px;
     margin: 0;
-    @media (max-width: $breakpoint-tablet) {
-      font-size: 16px;
-    }
+    
   }
   &__text{
     @include text3;

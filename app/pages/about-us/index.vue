@@ -1,8 +1,8 @@
 <template>
-  <section>
+ 
     <HeroSection />
     <EquipmentOverview />
-  </section>
+
 </template>
 
 <script setup lang="ts">
