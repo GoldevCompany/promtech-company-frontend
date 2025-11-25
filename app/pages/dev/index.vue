@@ -40,7 +40,10 @@
     </div>
     <!-- Our Partners Component -->
     <OurPartnersSection />
+
+    <!-- ExtraService Component -->
     <ExtraService />
+
     <div class="dev-page__footer">
       <div class="container">
         <h2 class="component-section__title">

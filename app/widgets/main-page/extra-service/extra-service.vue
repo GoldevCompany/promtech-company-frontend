@@ -1,42 +1,60 @@
 <template>
-  <section class="container extra-service">
-    <p class="extra-service__label">Дополнительный сервис</p>
-    <div class="extra-service__content">
-      <p class="extra-service__title">Услуги и сервис</p>
-      <div class="extra-service__external">
-        <div class="extra-service__block">
-          <NuxtImg class="extra-service__image-first" src="/images/service-engine.png" ></NuxtImg>
-          <div class="extra-service__info">
-          <span class="extra-service__description">
-            Наша задача — сделать ваше оборудование надёжным и долговечным.
-            Мы предлагаем: поставку подходящих решений, запуск оборудования,
-            плановое обслуживание и ремонт. Всё под ключ — вы получаете один
-            надёжный контакт и эффективность без лишней волокиты.
-          </span>
-            <div class="extra-service__services">
-              <p >Поставка машин</p>
-              <p >Гарантийное и послегарантийное обслуживание</p>
-              <p >Ремонт</p>
-              <p >Поставка запчастей</p>
+  <div class="service-wrapper">
+    <section class="container extra-service">
+      <p class="extra-service__label section-label">
+        Дополнительный сервис
+      </p>
+      <div class="extra-service__content">
+        <p class="extra-service__title">
+          Услуги и сервис
+        </p>
+        <div class="extra-service__external">
+          <div class="extra-service__block">
+            <NuxtImg
+              class="extra-service__image-first"
+              src="/images/service-engine.png"
+            />
+            <div class="extra-service__info">
+              <span class="extra-service__description">
+                Наша задача — сделать ваше оборудование надёжным и долговечным.
+                Мы предлагаем: поставку подходящих решений, запуск оборудования,
+                плановое обслуживание и ремонт. Всё под ключ — вы получаете один
+                надёжный контакт и эффективность без лишней волокиты.
+              </span>
+              <div class="extra-service__services">
+                <p>Поставка машин</p>
+                <p>Гарантийное и послегарантийное обслуживание</p>
+                <p>Ремонт</p>
+                <p>Поставка запчастей</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="extra-service__image-container">
-          <NuxtImg class="extra-service__image-second" src="/images/service-machinery.png"></NuxtImg>
+          <div class="extra-service__image-container">
+            <NuxtImg
+              class="extra-service__image-second"
+              src="/images/service-machinery.png"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
+<script setup lang="ts">
+</script>
 <style scoped lang="scss">
+  .service-wrapper {
+    background-color: $background-7;
+  }
+
   .extra-service {
     padding-top: 30px;
-    background-color: $background-7;
     color: $background-1;
     gap: 44px;
     display: flex;
     flex-direction: column;
+
     p {
       margin: 0;
     }
@@ -46,7 +64,7 @@
     }
 
     &__label {
-      @include headline6;
+      color: $background-1;
     }
 
     &__title {
@@ -158,11 +176,9 @@
 
       @media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
         clip-path: inset(35% 0 10% 0);
-
         position: absolute;
         width: 100%;
         height: auto;
-
         top: -98%;
         left: 0;
       }
