@@ -52,11 +52,16 @@
   &__title{
     @include headline5;
     padding-bottom: 20px;
-
+    margin: 0;
     
   }
   &__text{
     @include text3;
+     @media (max-width: $breakpoint-tablet) {
+      font-size: 14px;
+    }
+   
+   
   }
 }
 
