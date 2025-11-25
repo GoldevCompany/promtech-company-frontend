@@ -2,78 +2,98 @@
 interface Advantage {
   id: string;
   title: string;
+  image: string;
   elements?: string[];
 }
 
 const advantages: Advantage[] = [
-  {
-    id: '01',
-    title: 'Авторизованный дилер «Группа ФИД» и «Амкодор-Инвар»',
-  },
-  {
-    id: '02',
-    title: 'Сервис по всей России — работаем в том числе вахтовым методом',
-  },
-  {
-    id: '03',
-    title: 'Результат по КГТ',
-  },
-  {
-    id: '04',
-    title: 'Собственные:',
-    elements: [
-      'техническая база',
-      'склад запчастей и расходных материалов в городе Березники Пермского края',
-    ],
-  }
+    {
+        id: '01',
+        title: 'Авторизованный дилер «Группа ФИД» и «Амкодор-Инвар»',
+        image: '/images/advantages-img-1.png',
+    },
+    {
+        id: '02',
+        title: 'Сервис по всей России — работаем в том числе вахтовым методом',
+        image: '/images/advantages-img-2.png',
+    },
+    {
+        id: '03',
+        title: 'Результат по КГТ',
+        image: '/images/advantages-img-3.png',
+    },
+    {
+        id: '04',
+        title: 'Собственные:',
+        image: '/images/advantages-img-4.png',
+        elements: [
+            'техническая база',
+            'склад запчастей и расходных материалов в городе Березники Пермского края',
+        ],
+    }
 ];
 
 const $img = useImage();
 
 const backgroundStyles = computed(() => {
-  const imageUrl = $img('/images/advantages-texture.png', {
-    format: 'webp',
-    quality: 80,
-  })
+    const imageUrl = $img('/images/advantages-texture.png', {
+        format: 'webp',
+        quality: 80,
+    })
 
-  return {
-    '--bg-image': `url('${imageUrl}')`
-  }
+    return {
+        '--bg-image': `url('${imageUrl}')`
+    }
 })
 
 </script>
 
 <template>
-  <div class="our-advantages__wrapper" :style="backgroundStyles">
-    <section class="our-advantages container" >
-        <h6 class="our-advantages__label">Преимущества работы с нами:</h6>
-        <h6 class="our-advantages__title">Наши преимущества</h6>
-        <div class="our-advantages__grid">
-          <div 
-            v-for="(advantage, ) in advantages"
-            :key="advantage.id"
-            class="our-advantages__item"
-          >
-            <article class="advantage-card">
-              <h3 class="advantage-card__number">{{ advantage.id }}</h3>
-              <div class="advantage-card__title">
-                {{ advantage.title }}
-                <ul class="advantage-card__list" v-show="advantage.elements">
-                  <li class="advantage-card__item" v-for="element in advantage.elements" :key="element">
-                    {{ element }}
-                  </li>
-                </ul>
-              </div>
-              
-            </article>
-            <div class="our-advantages__image">
-              <img 
-                src="/images/mountain_machinery.png" 
-                alt="Mining machinery" 
-                class="our-advantages__image-content"
+  <div
+    class="our-advantages__wrapper"
+    :style="backgroundStyles"
+  >
+    <section class="our-advantages container">
+      <h6 class="section-label">
+        Преимущества работы с нами:
+      </h6>
+      <h6 class="our-advantages__title">
+        Наши преимущества
+      </h6>
+      <div class="our-advantages__grid">
+        <div
+          v-for="advantage in advantages"
+          :key="advantage.id"
+          class="our-advantages__item"
+        >
+          <article class="advantage-card">
+            <h3 class="advantage-card__number">
+              {{ advantage.id }}
+            </h3>
+            <div class="advantage-card__title">
+              {{ advantage.title }}
+              <ul
+                v-show="advantage.elements"
+                class="advantage-card__list"
               >
+                <li
+                  v-for="element in advantage.elements"
+                  :key="element"
+                  class="advantage-card__item"
+                >
+                  {{ element }}
+                </li>
+              </ul>
             </div>
+          </article>
+          <div class="our-advantages__image">
+            <NuxtImg
+              :src="advantage.image"
+              alt="advantage-image"
+              class="our-advantages__image-content"
+            />
           </div>
+        </div>
       </div>
     </section>
   </div>
@@ -84,11 +104,12 @@ const backgroundStyles = computed(() => {
   display: flex;
   flex-direction: column;
   gap: 32px;
-
-  padding: 30px 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
   @media (min-width: $breakpoint-tablet) {
-    padding: 60px 0px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   &__wrapper {
@@ -102,14 +123,12 @@ const backgroundStyles = computed(() => {
     position: absolute;
     inset: 0;
     z-index: -1;
-    opacity: 50%;
-
+    opacity: 0.5;
     background-image: var(--bg-image);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     object-fit: cover;
-
     filter: brightness(0.4) contrast(1) saturate(0.1);
   }
 
@@ -131,14 +150,9 @@ const backgroundStyles = computed(() => {
     }
   }
 
-  &__label {
-    @include headline6;
-    color: $text-additional;
-    margin: 0;
-  }
-
   &__title {
     @include headline3;
+
     color: $text-main;
     margin: 0;
     padding: 0;
@@ -156,12 +170,11 @@ const backgroundStyles = computed(() => {
     display: none;
     width: 100%;
     height: 100%;
-    min-height: 200px;
     overflow: hidden;
 
     @media (min-width: $breakpoint-tablet) {
       display: block;
-      min-height: 250px;
+      height: 168px;
     }
 
     @media (min-width: $breakpoint-desktop) {
@@ -183,20 +196,20 @@ const backgroundStyles = computed(() => {
   flex-direction: column;
   justify-content: space-between;
   min-height: 167px;
-
   padding: 20px 10px;
 
   @media (min-width: $breakpoint-tablet) {
-    min-height: 164px;
+    height: 168px;
   }
 
   @media (min-width: $breakpoint-desktop) {
     padding: 20px 22px;
-    min-height: 167px;
+    height: auto;
   }
 
   &__number {
     @include headline4;
+
     color: $text-link-1;
     margin: 0;
 
@@ -204,19 +217,21 @@ const backgroundStyles = computed(() => {
 
   &__title {
     @include text5;
+
     color: $text-main;
     margin: 0;
     width: 70%;
 
     @media (min-width: $breakpoint-desktop) {
       @include headline5;
+
       width: 100%;
     }
   }
 }
 
 // Tablet layout - 2 columns, zigzag pattern
-@media (min-width: $breakpoint-tablet) and (max-width: calc($breakpoint-desktop - 1px)) {
+@media (min-width: $breakpoint-tablet) and (width <= calc($breakpoint-desktop - 1px)) {
   .our-advantages__item:nth-child(1) .advantage-card { order: 1; }
   .our-advantages__item:nth-child(1) .our-advantages__image { order: 2; }
   .our-advantages__item:nth-child(2) .our-advantages__image { order: 3; }
