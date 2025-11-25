@@ -1,8 +1,9 @@
 <template>
-  <h2>Главная страница</h2>
+  <HeroSection />
   <OurPartnersWidget />
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { HeroSection } from '~/widgets/main-page';
 import { OurPartnersWidget } from '~/widgets'
 </script>
