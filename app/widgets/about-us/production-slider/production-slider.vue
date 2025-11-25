@@ -23,6 +23,13 @@
             nextEl: '.nav-btn_next',
             prevEl: '.nav-btn_prev'
           }"
+           :breakpoints="{
+            375: { slidesPerView: 1.1 },
+            600: { slidesPerView: 2 },
+            800: { slidesPerView: 2.3 },
+            900: { slidesPerView: 3 },
+            1200: { slidesPerView: 3.7 }
+          }"
           class="gallery-slider"
         >
           <SwiperSlide v-for="(img, i) in images" :key="i" :class="{'slide-offset': i === 2}">
@@ -95,36 +102,30 @@ const images = [
   &__inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap:200px;
+    gap: 207px;
  
   }
 
   &__subtitle {
     @include headline6;
     
-    @media (max-width: $breakpoint-tablet) {
-      font-size: 14px;
-    }
+   
+   
   }
 
   &__title {
     @include headline3;
     white-space: nowrap;
 
-     @media (max-width: $breakpoint-tablet) {
-      font-size: 32px;
-    }
+   
   }
 
   &__text {
     @include text3;
-    max-width: 310px;
+    
     text-align: right; 
     
-    @media (max-width: $breakpoint-tablet) {
-      font-size: 14px;
-    }
+    
   }
 
   &__content {
@@ -183,15 +184,19 @@ const images = [
     background-image: url('@/assets/icons/arrow-right.svg');
   }
 
-  
+  @media (max-width: $breakpoint-tablet)  {
+    .slide-offset {
+      margin-top: 60px; 
+    }
+
+    .gallery-slide__img {
+      border-radius: 12px;
+    }
+  }
 }
 
  
-  // .swiper-button-prev,
-  // .swiper-button-next {
-  //   position: static;
-  //   margin: 0;
-  // }
+
   
 }
 
