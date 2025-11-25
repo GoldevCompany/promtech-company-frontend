@@ -4,6 +4,5 @@
 </template>
 
 <script setup lang="ts">
-import { HeroSection } from '~/widgets/main-page';
-import { OurPartnersWidget } from '~/widgets'
+import { HeroSection, OurPartnersWidget } from '~/widgets/main-page';
 </script>
