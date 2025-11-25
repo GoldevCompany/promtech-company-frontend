@@ -1,7 +1,9 @@
 <template>
   <section class="about-us container">
     <div class="about-us__header">
-      <h2 class="about-us__title">О нас</h2>
+      <h2 class="section-label">
+        О нас
+      </h2>
     </div>
     <div class="about-us__content">
       <article 
@@ -15,8 +17,12 @@
           class="about-us__icon"
         />
         <div class="about-us__text">
-          <h3 class="about-us__item-title">{{ item.title }}</h3>
-          <p class="about-us__item-description">{{ item.description }}</p>
+          <h3 class="about-us__item-title">
+            {{ item.title }}
+          </h3>
+          <p class="about-us__item-description">
+            {{ item.description }}
+          </p>
         </div>
       </article>
     </div>
@@ -33,42 +39,43 @@ interface AboutUsItem {
 }
 
 const items: AboutUsItem[] = [
-  {
-    icon: 'about-the-company',
-    title: 'О компании',
-    description: 'Компания "ПромТехКомпани" является авторизованным дилером заводов «Группа ФИД» и «Амкодор-Инвар» (Республика Беларусь) и представляет на российском рынке подземные самоходные машины, предназначенные для решения производственных задач в условиях шахт и рудников.'
-  },
-  {
-    icon: 'stages',
-    title: 'Техника для всех этапов подземных работ',
-    description: 'В перечень поставляемых машин входят как основные — погрузочно-доставочные машины и самоходные буровые установки, так и вспомогательные шахтные доставочные машины — автобусы, заправщики, монтажный транспорт и кровлеоборщики.'
-  },
-  {
-    icon: 'partnership',
-    title: 'Более 15 лет надежного партнерства',
-    description: 'ООО "ПромТехКомпани" производит поставку и выполняет полный комплекс мероприятий по сервисному сопровождению подземных самоходных машин производства «Амкодор Инвар» (с 2015 года) и «Группа ФИД» (с 2022 года).'
-  },
-  {
-    icon: 'additionally',
-    title: 'Дополнительные услуги компании',
-    description: 'С 2008 года производим запасные части для горного оборудования и обогатительных фабрик.'
-  }
+    {
+        icon: 'about-the-company',
+        title: 'О компании',
+        description: 'Компания "ПромТехКомпани" является авторизованным дилером заводов «Группа ФИД» и «Амкодор-Инвар» (Республика Беларусь) и представляет на российском рынке подземные самоходные машины, предназначенные для решения производственных задач в условиях шахт и рудников.'
+    },
+    {
+        icon: 'stages',
+        title: 'Техника для всех этапов подземных работ',
+        description: 'В перечень поставляемых машин входят как основные — погрузочно-доставочные машины и самоходные буровые установки, так и вспомогательные шахтные доставочные машины — автобусы, заправщики, монтажный транспорт и кровлеоборщики.'
+    },
+    {
+        icon: 'partnership',
+        title: 'Более 15 лет надежного партнерства',
+        description: 'ООО "ПромТехКомпани" производит поставку и выполняет полный комплекс мероприятий по сервисному сопровождению подземных самоходных машин производства «Амкодор Инвар» (с 2015 года) и «Группа ФИД» (с 2022 года).'
+    },
+    {
+        icon: 'additionally',
+        title: 'Дополнительные услуги компании',
+        description: 'С 2008 года производим запасные части для горного оборудования и обогатительных фабрик.'
+    }
 ]
 </script>
 
 <style scoped lang="scss">
 .about-us {
+  padding-top: 60px;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding-top: 68px;
+  }
+
   &__header {
     margin-bottom: 44px;
 
     @media (min-width: $breakpoint-desktop) {
       margin-bottom: 32px;
     }
-  }
-
-  &__title {
-    @include headline6;
-    color: $text-main;
   }
 
   &__content {
@@ -109,6 +116,7 @@ const items: AboutUsItem[] = [
 
   &__item-title {
     @include headline5;
+
     color: $text-main;
     
     @media (min-width: $breakpoint-tablet) {
@@ -122,6 +130,7 @@ const items: AboutUsItem[] = [
 
   &__item-description {
     @include text3;
+
     color: $text-additional;
   }
 }

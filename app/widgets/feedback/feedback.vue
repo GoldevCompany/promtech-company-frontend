@@ -1,5 +1,8 @@
 <template>
-  <div :style="backgroundStyles" class="feedback-wrapper">
+  <div
+    :style="backgroundStyles"
+    class="feedback-wrapper"
+  >
     <div
       id="feedback"
       class="container feedback-container"
@@ -136,10 +139,10 @@ const backgroundStyles = computed(() => {
     background-image: linear-gradient(to right, #2D2E34FF 0%, #2D2E3400 9%, #2D2E3400 89%, #2D2E34FF 100%);
   }
 }
+
 .feedback-container {
   display: grid;
   grid-template-columns: 1fr;
-
   padding: 30px 40px ;
   gap:40px;
   text-align: center;

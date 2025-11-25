@@ -1,6 +1,6 @@
 <template>
   <HeroSection />
-  <AboutUs/>
+  <AboutUs />
 </template>
 
 <script setup lang="ts">
