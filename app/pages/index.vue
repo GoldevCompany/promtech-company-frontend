@@ -5,5 +5,5 @@
 
 <script setup lang="ts">
 import { HeroSection } from '~/widgets/main-page';
-import { AboutUs } from '~/widgets'
+import { AboutUs } from '~/widgets/main-page';
 </script>

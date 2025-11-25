@@ -14,6 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { AboutUs } from '~/widgets'
+import { AboutUs } from '~/widgets/main-page'
 </script>
 
