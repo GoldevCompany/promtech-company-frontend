@@ -41,12 +41,12 @@
      
         <div class="gallery-nav">
           <Button 
-          leading-icon="arrowBack"
+          leading-icon="arrow-left"
           :icon-size="25" 
           class="nav-btn nav-btn_prev" 
           />
           <Button 
-          leading-icon="arrowForward" 
+          leading-icon="arrow-right" 
           :icon-size="25" 
           class="nav-btn nav-btn_next" 
           />
