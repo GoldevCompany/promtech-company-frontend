@@ -79,7 +79,6 @@ const images = [
   display: none !important;
 }
 
-
 .gallery-page {
   margin-top: 100px;
   position: relative;
@@ -99,8 +98,8 @@ const images = [
     z-index: 1;
   }
 
-  .gallery-page__header,
-  .gallery-page__content {
+  &__header,
+  &__content {
     position: relative;
     z-index: 2;
   }
@@ -111,33 +110,41 @@ const images = [
 
   &__inner {
     display: flex;
-    align-items: center;
+    flex-direction: column; 
+    align-items: flex-start;
     justify-content: space-between;
-    @media (max-width: 799px) {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+    gap: 10px;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row; 
+      align-items: center;
+      gap: 0;
     }
   }
- 
+
   &__subtitle {
     @include headline6;
-    color:$divider;
+    color: $divider;
   }
 
   &__title {
     @include headline3;
     white-space: nowrap;
+    margin-bottom: 10px;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-bottom: 0;
+    }
   }
 
   &__text {
     @include text3;
     color: $text-additional;
-    text-align: right; 
-    @media (max-width: 799px) {
-      text-align: left;
-    }
+    text-align: left; 
 
+    @media (min-width: $breakpoint-tablet) {
+      text-align: right; 
+    }
   }
 
   &__content {
@@ -147,20 +154,28 @@ const images = [
 
   .gallery-slider {
     width: 100%;
-  
+
     .gallery-slide__img {
       width: 100%;
       object-fit: cover;
-      display: block; 
-      margin: 0; 
+      display: block;
+      margin: 0;
+      border-radius: 0; 
     }
-    
 
     .slide-offset .gallery-slide__img {
-    margin-top: 115px;
-  }
-  }
+      margin-top: 60px; 
+    }
 
+    @media (min-width: $breakpoint-tablet) {
+      .gallery-slide__img {
+        border-radius: 12px;
+      }
+      .slide-offset .gallery-slide__img {
+        margin-top: 115px; 
+      }
+    }
+  }
 
   .gallery-nav {
     display: flex;
@@ -172,35 +187,18 @@ const images = [
   .nav-btn {
     width: 46px;
     height: 46px;
-    border: 2px solid $text-main;  
-    background-color: transparent; 
+    border: 2px solid $text-main;
+    background-color: transparent;
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
     transition: all 0.3s ease;
 
-  &:hover {
-    border: none; 
-    background-color: $text-link-1; 
-   
-  }
-
-
-  @media (max-width: $breakpoint-tablet)  {
-    .slide-offset {
-      margin-top: 60px; 
-    }
-
-    .gallery-slide__img {
-      border-radius: 12px;
+    &:hover {
+      border: none;
+      background-color: $text-link-1;
     }
   }
 }
-
- 
-
-  
-}
-
-
 </style>
+
