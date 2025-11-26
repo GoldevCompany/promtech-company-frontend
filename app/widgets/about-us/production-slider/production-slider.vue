@@ -29,7 +29,7 @@
             600: { slidesPerView: 2 },
             800: { slidesPerView: 2.3 },
             900: { slidesPerView: 3 },
-            1200: { slidesPerView: 3.7 }
+            1200: { slidesPerView: 4 }
           }"
           class="gallery-slider"
         >
@@ -168,9 +168,6 @@ const images = [
     }
 
     @media (min-width: $breakpoint-tablet) {
-      .gallery-slide__img {
-        border-radius: 12px;
-      }
       .slide-offset .gallery-slide__img {
         margin-top: 115px; 
       }
