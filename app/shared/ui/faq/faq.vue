@@ -8,111 +8,102 @@ export interface FaqItem {
 }
 
 const items = ref<FaqItem[]>([
-  {
-    number: '01',
-    question: 'Какую технику вы поставляете?',
-    content: `
+    {
+        number: '01',
+        question: 'Какую технику вы поставляете?',
+        content: `
         Мы специализируемся на поставке и сервисном обслуживании техники, используемой в условиях рудников. 
         Представляемые нами самоходные буровые установки, 
         погрузочно-доставочные и вспомогательные машины производятся в Белоруссии на заводах в Минске и Витебске. 
         <a href="#">Доступ к каталогу техники.</a>
     `
-  },
-  {
-    number: '02',
-    question: 'Работаете по КТГ?',
-    content: `
+    },
+    {
+        number: '02',
+        question: 'Работаете по КТГ?',
+        content: `
         Да, работаем. Условия необходимо уточнить у менеджера. 
         Номер телефона и контактную информацию для связи можно найти в разделе <a href=#>«Контакты»</a>
     `
-  },
-  {
-    number: '03',
-    question: 'Вахтовым методом работаете?',
-    content: `
+    },
+    {
+        number: '03',
+        question: 'Вахтовым методом работаете?',
+        content: `
         Да, возможна организация работ вахтовым методом. 
         Условия необходимо уточнить у менеджера. 
         Номер телефона и контактную информацию для связи можно найти в разделе <a href=#>«Контакты»</a>
     `
-  },
-  {
-    number: '04',
-    question: 'Если нет договора на сервисное обслуживание, разовые выезды выполняете?',
-    content: `
+    },
+    {
+        number: '04',
+        question: 'Если нет договора на сервисное обслуживание, разовые выезды выполняете?',
+        content: `
         Да, разовые выезды возможны, но это лучше обсудить с менеджером.
     `
-  },
-  {
-    number: '05',
-    question: 'Как получить информацию по наличию запчастей?',
-    content: `
+    },
+    {
+        number: '05',
+        question: 'Как получить информацию по наличию запчастей?',
+        content: `
         Самый быстрый вариант – через наш сайт, на котором организован <a href=#>раздел</a>, в котором размещена информация по наличию запчастей на складе. 
         Отметьте нужные Вам позиции, укажите их количество, заполните форму и отправьте заявку. 
         С Вами свяжется наш сотрудник и обсудит варианты поставки Вашего заказа.
     `
-  },
-  {
-    number: '06',
-    question: 'Возможна приёмка готовой техники на площадке производителя?',
-    content: `
+    },
+    {
+        number: '06',
+        question: 'Возможна приёмка готовой техники на площадке производителя?',
+        content: `
         Да, мы практикуем выезд с представителями 
         Заказчиков на площадку завода-изготовителя техники для совместной проверки готовности машин.
     `
-  },
+    },
 ]);
 
 const activeIndex = ref<number | null>(null);
 
-const DESKTOP_BREAKPOINT = 1200;
-
-const isDesktop = () => {
-  if (typeof window === 'undefined') return false;
-  return window.innerWidth >= DESKTOP_BREAKPOINT;
-};
-
 const onMouseEnter = (index: number) => {
-  if (isDesktop()) {
     activeIndex.value = index;
-  }
 };
 
 const onMouseLeave = () => {
-  if (isDesktop()) {
     activeIndex.value = null;
-  }
 };
 
 const onClick = (index: number) => {
-  if (!isDesktop()) {
     activeIndex.value = activeIndex.value === index ? null : index;
-  }
 };
 
 const startTransition = (el: Element) => {
-  (el as HTMLElement).style.height = '0';
+    (el as HTMLElement).style.height = '0';
 };
 
 const enterTransition = (el: Element) => {
-  const element = el as HTMLElement;
-  element.style.height = element.scrollHeight + 'px';
+    const element = el as HTMLElement;
+    element.style.height = element.scrollHeight + 'px';
 };
 
 const leaveTransition = (el: Element) => {
-  const element = el as HTMLElement;
-  element.style.height = element.scrollHeight + 'px';
-  element.offsetHeight; 
-  element.style.height = '0';
+    const element = el as HTMLElement;
+    element.style.height = element.scrollHeight + 'px';
+    element.offsetHeight; 
+    element.style.height = '0';
 };
 
 const endTransition = (el: Element) => {
-  (el as HTMLElement).style.height = '';
+    (el as HTMLElement).style.height = '';
 };
 </script>
 
 <template>
   <div class="faq container">
-    <p class="faq__label">Частые вопросы</p>
-    <p class="faq__title">FAQ</p>
+    <p class="faq__label">
+      Частые вопросы
+    </p>
+    <p class="faq__title">
+      FAQ
+    </p>
     <div
       v-for="(item, index) in items"
       :key="index"
@@ -129,7 +120,10 @@ const endTransition = (el: Element) => {
         <span class="faq__number">{{ item.number }}</span>
         <span class="faq__question">{{ item.question }}</span>
         <span class="faq__icon">
-          <PromtechIcon name="arrow" :iconSize=30></PromtechIcon>
+          <PromtechIcon
+            name="arrow"
+            :icon-size="30"
+          />
         </span>
       </div>
 
@@ -141,10 +135,19 @@ const endTransition = (el: Element) => {
         @before-leave="leaveTransition"
         @leave="leaveTransition"
       >
-        <div v-show="activeIndex === index" class="faq__body">
-          <div class="faq__content" @click.stop>
-            <slot name="answer" :item="item">
-              <div v-html="item.content"></div>
+        <div
+          v-show="activeIndex === index"
+          class="faq__body"
+        >
+          <div
+            class="faq__content"
+            @click.stop
+          >
+            <slot
+              name="answer"
+              :item="item"
+            >
+              <div v-html="item.content" />
             </slot>
           </div>
         </div>
@@ -157,7 +160,6 @@ const endTransition = (el: Element) => {
 // Настройки макета
 $num-width-mob: 30px;
 $gap-mob: 30px;
-
 $num-width-desk: 48px;
 $gap-desk: 174px;
 
@@ -165,27 +167,32 @@ $gap-desk: 174px;
 $padding-top-mob: 25px;
 $padding-top-tablet: 112px;
 $padding-top-desk: 150px;
-
 $transition-speed: 0.4s;
 
 .faq {
   display: flex;
   flex-direction: column;
+  padding-top: 30px;
+  padding-bottom: 30px;
 
-  padding: 30px 0px;
   @media (min-width: $breakpoint-tablet) {
-    padding: 68px 0px;
+    padding-top: 68px;
+    padding-bottom: 68px;
   }
 
   &__label {
     margin: 0;
+
     @include headline6;
+
     padding-bottom: 32px;
   }
 
   &__title {
     margin: 0;
+
     @include headline3;
+
     padding-bottom: 32px;
   }
   
@@ -205,25 +212,20 @@ $transition-speed: 0.4s;
     &--active {
       z-index: 1;
       border-color: $divider;
-      
-      .faq__icon {
-        transform: rotate(180deg);
-      }
     }
 
-      &--dimmed {
-        color: $background-4;
-        border-color: $background-4;
-      }
-    
+    &--dimmed {
+      color: $background-4;
+      border-color: $background-4;
+    }
   }
 
   &__header {
     display: flex;
     align-items: flex-start;
     padding: 20px 0;
-    
     gap: $gap-mob;
+
     @media (min-width: $breakpoint-desktop) {
       gap: $gap-desk;
     }
@@ -231,6 +233,7 @@ $transition-speed: 0.4s;
 
   &__number {
     font-variant-numeric: tabular-nums;
+
     @include headline5;
     
     flex: 0 0 $num-width-mob;
@@ -242,6 +245,7 @@ $transition-speed: 0.4s;
 
   &__question {
     flex-grow: 1;
+
     @include headline5;
   }
 
@@ -250,13 +254,15 @@ $transition-speed: 0.4s;
     align-items: center;
     justify-content: center;
     transition: transform $transition-speed ease;
-    
     flex-shrink: 0;
     width: 24px;
     height: 24px;
-    
     margin-top: 2px; 
     color: $accent;
+  }
+
+  &__item--active &__icon {
+    transform: rotate(180deg);
   }
 
   &__body {
@@ -266,17 +272,16 @@ $transition-speed: 0.4s;
 
   &__content {
     @include text3;
-    padding-bottom: 24px;
-    
-    padding-top: $padding-top-mob; 
+
+    padding: $padding-top-mob calc(24px + #{$gap-mob}) 24px calc(#{$num-width-mob} + #{$gap-mob}); 
 
     @media (min-width: $breakpoint-tablet) {
       padding-top: $padding-top-tablet; 
     }
+
     // Отступ слева = ширина номера + gap
-    padding-left: calc(#{$num-width-mob} + #{$gap-mob});
+
     // Отступ справа
-    padding-right: calc(24px + #{$gap-mob});
 
     @media (min-width: $breakpoint-desktop) {
       // Отступ сверху
