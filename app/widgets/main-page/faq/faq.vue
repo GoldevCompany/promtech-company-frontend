@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import {Accordion, PromtechIcon} from '~/shared';
+import {Accordion} from '~/shared';
+import { type AccordionItem } from '~/shared';
 
-export interface FaqItem {
-  number: string;
-  question: string;
-  content: string;
-}
-
-const items = ref<FaqItem[]>([
+const items = ref<AccordionItem[]>([
     {
         number: '01',
         question: 'Какую технику вы поставляете?',
@@ -64,52 +59,22 @@ const items = ref<FaqItem[]>([
 
 <template>
   <div class="faq container">
-    <p class="faq__label section-label">
+    <p class="faq__label">
       Частые вопросы
     </p>
     <p class="faq__title">
       FAQ
     </p>
 
-    <Accordion :items="items">
-      <template #header="{ item, active }">
-        <div class="faq__header">
-          <span class="faq__number">{{ item.number }}</span>
-          <span class="faq__question">{{ item.question }}</span>
-          <span
-            class="faq__icon"
-            :class="{ 'faq__icon--active': active }"
-          >
-            <PromtechIcon
-              name="arrow"
-              :icon-size="30"
-            />
-          </span>
-        </div>
-      </template>
-
-      <template #content="{ item }">
-        <div class="faq__content-inner">
-          <div v-html="item.content" />
-        </div>
-      </template>
-    </Accordion>
+    <Accordion
+      :items="items"
+      class="faq__accordion"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
-$num-width-mob: 30px;
-$gap-mob: 30px;
-$num-width-desk: 48px;
-$gap-desk: 174px;
-$padding-top-mob: 25px;
-$padding-top-tablet: 112px;
-$padding-top-desk: 150px;
-$transition-speed: 0.4s;
-
 .faq {
-  display: flex;
-  flex-direction: column;
   padding-top: 30px;
   padding-bottom: 30px;
 
@@ -119,106 +84,51 @@ $transition-speed: 0.4s;
   }
 
   &__label {
-    margin: 0;
+    @include headline6;
+
     padding-bottom: 32px;
   }
 
   &__title {
-    margin: 0;
-
     @include headline3;
 
     padding-bottom: 32px;
   }
 
-  :deep(.accordion__item) {
-    border-top: 1px solid $divider;
-    border-bottom: 1px solid $divider;
-    color: $text-main;
-    transition: color $transition-speed ease, border-color $transition-speed ease;
-    cursor: pointer;
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  :deep(.accordion__item + .accordion__item) {
-    margin-top: -1px;
-  }
-
-  :deep(.accordion__item--active) {
-    z-index: 1;
-    border-color: $divider;
-  }
-
-  :deep(.accordion__item--dimmed) {
-    color: $background-4;
-    border-color: $background-4;
-  }
-
-  &__header {
-    display: flex;
-    align-items: flex-start;
-    padding: 20px 0;
-    gap: $gap-mob;
-
-    @media (min-width: $breakpoint-desktop) {
-      gap: $gap-desk;
-    }
-  }
-
-  &__number {
-    font-variant-numeric: tabular-nums;
-
-    @include headline5;
-
-    flex: 0 0 $num-width-mob;
-
-    @media (min-width: $breakpoint-desktop) {
-      flex: 0 0 $num-width-desk;
-    }
-  }
-
-  &__question {
-    flex-grow: 1;
-
-    @include headline5;
-  }
-
-  &__icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform $transition-speed ease;
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    margin-top: 2px;
-    color: $accent;
-
-    &--active {
-      transform: rotate(180deg);
-    }
-  }
-
-  // Внутренний контейнер контента для отступов
-  &__content-inner {
-    @include text3;
-
-    padding: $padding-top-mob calc(24px + #{$gap-mob}) 24px calc(#{$num-width-mob} + #{$gap-mob});
-
-    @media (min-width: $breakpoint-tablet) {
-      padding-top: $padding-top-tablet;
+  &__accordion {
+    :deep(.accordion__item) {
+      border-color: $divider;
+      color: $text-main;
     }
 
-    @media (min-width: $breakpoint-desktop) {
-      padding-top: $padding-top-desk;
-      padding-left: calc(#{$num-width-desk} + #{$gap-desk});
-      padding-right: calc(24px + #{$gap-desk});
+    :deep(.accordion__number) {
+      @include headline5;
     }
 
-    :deep(a) {
-      color: $text-link-1;
-      text-decoration: none;
+    :deep(.accordion__question) {
+      @include headline5;
+    }
+
+    :deep(.accordion__icon) {
+      color: $accent;
+    }
+
+    :deep(.accordion__content) {
+      @include text3;
+
+      a {
+        color: $text-link-1;
+        text-decoration: none;
+      }
+    }
+
+    :deep(.accordion__item--active) {
+      border-color: $divider;
+    }
+
+    :deep(.accordion__item--dimmed) {
+      color: $background-4;
+      border-color: $background-4;
     }
   }
 }
