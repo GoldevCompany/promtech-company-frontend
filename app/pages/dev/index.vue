@@ -34,9 +34,6 @@
 
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
-
-      <!-- About Us Widget -->
-      <AboutUsSection />
     </div>
     <!-- Our Partners Component -->
     <OurPartnersSection />
