@@ -1,20 +1,18 @@
 <template>
-    <Icon 
-        :name="`promtech-icons:${name}`" 
-        :class="['promtech-icon', className]"
-        :size="iconSize"
-        :color="color"
-    />
+  <Icon
+    :name="`promtech-icons:${name}`"
+    :class="['promtech-icon', className]"
+    :size="iconSize"
+  />
 </template>
 
 <script setup lang="ts">
-export type PromtechIconName = 'arrow' | 'burger-menu' | 'paperclip' | 'shopping-bag' | 'check'
+export type PromtechIconName = 'arrow' | 'burger-menu' | 'paperclip' | 'shopping-bag' | 'check' | 'about-the-company' | 'stages' | 'partnership' | 'additionally'
 
 export interface PromtechIconProps {
     name: PromtechIconName
     className?: string
     iconSize?: number
-    color?: string
 }
 
 defineProps<PromtechIconProps>()
@@ -28,8 +26,7 @@ defineProps<PromtechIconProps>()
     width: 1em;
     height: 1em;
     font-size: inherit;
-    color: inherit;
-    
+
     :deep(svg) {
         width: 100%;
         height: 100%;
