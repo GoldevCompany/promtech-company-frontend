@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { isMockEnabled } from '@/shared/lib/mock'
 import type { FeedbackForm } from '@/shared/types'
+import { apiSentForm } from '~/shared/api'
 
 interface ContactState {
   isSubmitting: boolean
@@ -26,7 +27,7 @@ export const useFeedbackStore = defineStore('contact', {
                         return formData
                     }, 1000)
                 } else {
-                    // TODO: отправка корзины на сервер
+                    await apiSentForm(formData)
                 }
 
                 this.isSuccess = true
