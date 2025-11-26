@@ -66,7 +66,13 @@ const backgroundStyles = computed(() => {
           :key="advantage.id"
           class="our-advantages__item"
         >
-          <article class="advantage-card">
+          <article
+            v-cursor="{
+              local: true,
+              stylePreset: 'backdropBlur'
+            }"
+            class="advantage-card"
+          >
             <h3 class="advantage-card__number">
               {{ advantage.id }}
             </h3>
@@ -207,6 +213,11 @@ const backgroundStyles = computed(() => {
     height: auto;
   }
 
+  @media (pointer: fine) {
+    overflow: hidden;
+    position: relative;
+  }
+
   &__number {
     @include headline4;
 
@@ -231,7 +242,7 @@ const backgroundStyles = computed(() => {
 }
 
 // Tablet layout - 2 columns, zigzag pattern
-@media (min-width: $breakpoint-tablet) and (width <= calc($breakpoint-desktop - 1px)) {
+@media (min-width: $breakpoint-tablet) {
   .our-advantages__item:nth-child(1) .advantage-card { order: 1; }
   .our-advantages__item:nth-child(1) .our-advantages__image { order: 2; }
   .our-advantages__item:nth-child(2) .our-advantages__image { order: 3; }
