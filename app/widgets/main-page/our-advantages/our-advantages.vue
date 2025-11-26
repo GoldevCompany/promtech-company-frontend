@@ -125,7 +125,7 @@ const itemClass = (index: number) => {
                 <li
                   v-for="element in advantage.elements"
                   :key="element"
-                  class="advantage-card__item"
+                  class="advantage-card__element"
                 >
                   {{ element }}
                 </li>
@@ -202,10 +202,6 @@ const itemClass = (index: number) => {
     margin: 0;
     padding: 0;
   }
-
-  ul {
-      margin: 1px;
-    }
 
   &__item {
     display: flex;
@@ -308,6 +304,16 @@ const itemClass = (index: number) => {
       width: 100%;
     }
   }
+
+  &__list {
+    padding-left: 1rem;
+  }
+
+  &__element {
+    display: list-item;
+    list-style: disc!important;
+  }
 }
+
 
 </style>
