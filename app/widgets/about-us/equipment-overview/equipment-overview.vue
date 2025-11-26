@@ -58,10 +58,12 @@
     @include headline5;
     padding-bottom: 20px;
     margin: 0;
+    color: $text-additional;
     
   }
   &__text{
     @include text3; 
+    color: $text-additional;
   }
 }
 
