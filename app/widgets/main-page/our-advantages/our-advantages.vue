@@ -46,6 +46,46 @@ const backgroundStyles = computed(() => {
     }
 })
 
+const DESKTOP_BREAKPOINT = 1200;
+
+const isDesktop = ref(false);
+
+onMounted(() => {
+    if (typeof window !== 'undefined') {
+        const mediaQuery = window.matchMedia(`(min-width: ${DESKTOP_BREAKPOINT}px)`);
+
+        isDesktop.value = mediaQuery.matches;
+
+        const handler = (e: MediaQueryListEvent) => {
+            isDesktop.value = e.matches;
+        };
+
+        mediaQuery.addEventListener('change', handler);
+
+        onUnmounted(() => {
+            mediaQuery.removeEventListener('change', handler);
+        });
+    }
+});
+
+const itemClass = (index: number) => {
+    const regular = 'our-advantages__item';
+    const reverse = 'our-advantages__item our-advantages__item--reverse';
+    if (isDesktop.value) {
+        if (index > 1) {
+            return reverse;
+        }
+        return regular;
+    }
+    else {
+        if (index % 2 == 1) {
+            return reverse;
+        } else {
+            return regular;
+        }
+    }
+}
+
 </script>
 
 <template>
@@ -62,9 +102,9 @@ const backgroundStyles = computed(() => {
       </h6>
       <div class="our-advantages__grid">
         <div
-          v-for="advantage in advantages"
+          v-for="(advantage, index) in advantages"
           :key="advantage.id"
-          class="our-advantages__item"
+          :class="itemClass(index)"
         >
           <article
             v-cursor="{
@@ -122,22 +162,21 @@ const backgroundStyles = computed(() => {
     position: relative;
     overflow: hidden;
     z-index: 0;
-  }
 
-  &__wrapper::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    opacity: 0.5;
-    background-image: var(--bg-image);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    object-fit: cover;
-    filter: brightness(0.4) contrast(1) saturate(0.1);
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.5;
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      object-fit: cover;
+      filter: brightness(0.4) contrast(1) saturate(0.1);
+    }
   }
-
 
   &__grid {
     display: flex;
@@ -146,12 +185,12 @@ const backgroundStyles = computed(() => {
 
     @media (min-width: $breakpoint-tablet) {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       gap: 10px;
     }
 
     @media (min-width: $breakpoint-desktop) {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 2fr);
       gap: 20px;
     }
   }
@@ -169,7 +208,39 @@ const backgroundStyles = computed(() => {
     }
 
   &__item {
-    display: contents;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @media (min-width: $breakpoint-tablet) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+
+    &--reverse {
+      @media (min-width: $breakpoint-tablet) {
+        .advantage-card {
+          order: 2;
+        }
+
+        .our-advantages__image {
+          order: 1;
+        }
+      }
+
+      @media (min-width: $breakpoint-desktop) {
+        .advantage-card {
+          order: 2;
+        }
+
+        .our-advantages__image {
+          order: 1;
+        }
+      }
+    }
   }
 
   &__image {
@@ -184,7 +255,7 @@ const backgroundStyles = computed(() => {
     }
 
     @media (min-width: $breakpoint-desktop) {
-      min-height: 300px;
+      height: 100%;
     }
   }
 
@@ -197,12 +268,15 @@ const backgroundStyles = computed(() => {
 }
 
 .advantage-card {
+  box-sizing: border-box;
   border: 1px solid $divider;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 167px;
   padding: 20px 10px;
+  overflow: hidden;
+  position: relative;
 
   @media (min-width: $breakpoint-tablet) {
     height: 168px;
@@ -211,11 +285,6 @@ const backgroundStyles = computed(() => {
   @media (min-width: $breakpoint-desktop) {
     padding: 20px 22px;
     height: auto;
-  }
-
-  @media (pointer: fine) {
-    overflow: hidden;
-    position: relative;
   }
 
   &__number {
@@ -241,27 +310,4 @@ const backgroundStyles = computed(() => {
   }
 }
 
-// Tablet layout - 2 columns, zigzag pattern
-@media (min-width: $breakpoint-tablet) {
-  .our-advantages__item:nth-child(1) .advantage-card { order: 1; }
-  .our-advantages__item:nth-child(1) .our-advantages__image { order: 2; }
-  .our-advantages__item:nth-child(2) .our-advantages__image { order: 3; }
-  .our-advantages__item:nth-child(2) .advantage-card { order: 4; }
-  .our-advantages__item:nth-child(3) .advantage-card { order: 5; }
-  .our-advantages__item:nth-child(3) .our-advantages__image { order: 6; }
-  .our-advantages__item:nth-child(4) .our-advantages__image { order: 7; }
-  .our-advantages__item:nth-child(4) .advantage-card { order: 8; }
-}
-
-// Desktop layout - 4 columns, zigzag pattern
-@media (min-width: $breakpoint-desktop) {
-  .our-advantages__item:nth-child(1) .advantage-card { order: 1; }
-  .our-advantages__item:nth-child(1) .our-advantages__image { order: 2; }
-  .our-advantages__item:nth-child(2) .advantage-card { order: 3; }
-  .our-advantages__item:nth-child(2) .our-advantages__image { order: 4; }
-  .our-advantages__item:nth-child(3) .our-advantages__image { order: 5; }
-  .our-advantages__item:nth-child(3) .advantage-card { order: 6; }
-  .our-advantages__item:nth-child(4) .our-advantages__image { order: 7; }
-  .our-advantages__item:nth-child(4) .advantage-card { order: 8; }
-}
 </style>
