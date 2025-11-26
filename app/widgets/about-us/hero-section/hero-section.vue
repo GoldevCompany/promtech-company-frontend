@@ -22,26 +22,33 @@
     background-size: cover;
     background-position: center;
     display: flex;
-    
-    
+    flex-direction: column; 
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row; 
+      align-items: center;
+      justify-content: center;
+    }
   }
+
   &__content {
-    margin-top: 360px;
+    margin-top: 84px; 
     padding-bottom: 32px;
-    @media (max-width: 779px) {
-      margin-top: 84px;
-    }  
-    
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-top: 360px; 
+    }
   }
+
   &__title {
     @include headline1;
-   
-    
   }
+
   &__subtitle {
     @include text3;
     padding-top: 32px;
-    
   }
 }
 </style>

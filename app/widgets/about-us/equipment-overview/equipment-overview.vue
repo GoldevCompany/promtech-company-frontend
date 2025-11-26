@@ -25,46 +25,52 @@
 
 <style scoped lang="scss">
 .equipment-overview {
-    margin-top: 128px;
-    margin-bottom: 68px;
+  margin-top: 128px;
+  margin-bottom: 68px;
+
   &__inner {
-    display: flex;        
-    align-items: flex-start;    
-    justify-content: space-between;
-    gap: 20px;     
-    @media (max-width: 779px) {
-      flex-direction: column;  
-    }           
-  }
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 20px;
 
-  
-  &__img{
-    width: 710px;
-    padding-top: 32px;
-    @media (max-width: $breakpoint-tablet) {
-        max-width: 350px
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
     }
-    @media (max-width: 799px) {
-       max-width: 295px
-    }     
-
   }
-  &__content{
-    max-width: 509px;
+
+  &__img {
+    padding-top: 32px;
+    max-width: 295px; 
+
+    @media (min-width: $breakpoint-tablet) {
+      max-width: 350px;
+    }
+   
+    @media (min-width: $breakpoint-desktop) {
+      max-width: 795px;
+    }
+  }
+
+  &__content {
     display: flex;
     flex-direction: column;
+    max-width: 509px;
   }
-  &__title{
+
+  &__title {
     @include headline5;
     padding-bottom: 20px;
     margin: 0;
     color: $text-additional;
-    
   }
-  &__text{
-    @include text3; 
+
+  &__text {
+    @include text3;
     color: $text-additional;
   }
 }
-
 </style>
+
