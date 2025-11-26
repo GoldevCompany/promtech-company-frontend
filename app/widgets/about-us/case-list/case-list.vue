@@ -10,7 +10,7 @@
             Опыт в деле
           </h3>
           <p class="cases__text">
-            Реальные примеры выполненных<br>проектов и решений для наших клиентов
+            Реальные примеры выполненных<br />проектов и решений для наших клиентов
           </p>
         </div>
       </div>
@@ -23,10 +23,12 @@
         >
           <div class="case-card__content">
             <div class="case-card__inner">
-                <h5 class="case-card__title">
-                  {{ caseItem.title }}
-                </h5>
-                <h4 class="case-card__number">{{ caseItem.number }}</h4>
+              <h5 class="case-card__title">
+                {{ caseItem.title }}
+              </h5>
+              <h4 class="case-card__number">
+                {{ caseItem.number }}
+              </h4>
             </div>
             
             <p class="case-card__text">
@@ -92,6 +94,7 @@ const cases = [
 
   &__subtitle {
     @include headline6;
+
     color: $divider;
   }
 
@@ -99,6 +102,8 @@ const cases = [
     display: flex;
     flex-direction: column; 
     justify-content: space-between;
+    margin-top: 44px;
+
     @media (min-width: $breakpoint-tablet) {
       justify-content: space-between;
       flex-direction: row;
@@ -109,11 +114,18 @@ const cases = [
 
   &__title {
     @include headline3;
+
+    margin-bottom: 10px;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-bottom: 0;
+    }
     
   }
 
   &__text {
     @include text3;
+
     color: $text-additional;
     text-align: left; 
 
@@ -142,7 +154,7 @@ const cases = [
 
 .case-card {
   border: 1px solid $background-2;
-  width: 295px;  
+  width: 100%;  
   height: 247px;
   display: flex;
   flex-direction: column;
@@ -175,16 +187,15 @@ const cases = [
 
   &__text {
     @include text3;
+
     color: $text-additional;
   }
 
   @media (min-width: $breakpoint-tablet) {
-    width: 340px;
     height: 248px;
   }
 
   @media (min-width: $breakpoint-desktop) {
-    width: 465px;
     height: 298px;
   }
 }
