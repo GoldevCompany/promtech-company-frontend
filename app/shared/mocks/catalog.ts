@@ -102,3 +102,4 @@ export const catalogMachinesMock: Record<string, MachineFullCard> = {
 }
 
 
+
