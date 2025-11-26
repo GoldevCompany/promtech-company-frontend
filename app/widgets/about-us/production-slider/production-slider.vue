@@ -122,6 +122,7 @@ const images = [
  
   &__subtitle {
     @include headline6;
+    color:$divider;
   }
 
   &__title {
@@ -131,6 +132,7 @@ const images = [
 
   &__text {
     @include text3;
+    color: $text-additional;
     text-align: right; 
     @media (max-width: 799px) {
       text-align: left;
