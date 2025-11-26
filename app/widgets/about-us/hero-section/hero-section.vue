@@ -2,9 +2,11 @@
   <section class="about-hero">
     <div class="about-hero__bg">
       <div class="container about-hero__content">
-        <h1 class="about-hero__title">О компании</h1>
+        <h1 class="about-hero__title">
+          О компании
+        </h1>
         <p class="about-hero__subtitle">
-          Ваш надёжный партнёр в техническом<br>обслуживании и поставке горной техники
+          Ваш надёжный партнёр в техническом<br />обслуживании и поставке горной техники
         </p>
       </div>
     </div>
@@ -48,6 +50,7 @@
 
   &__subtitle {
     @include text3;
+
     padding-top: 32px;
   }
 }
