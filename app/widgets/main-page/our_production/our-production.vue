@@ -280,6 +280,5 @@ const handlePointerLeave = (e: PointerEvent) => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: translateX(-5px);
 }
 </style>
