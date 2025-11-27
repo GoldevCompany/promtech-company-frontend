@@ -4,4 +4,4 @@ export * from './about-us'
 export * from './extra-service'
 export * from './our-advantages'
 export * from './our-partners'
-
+export * from './faq'
