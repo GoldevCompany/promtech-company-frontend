@@ -9,67 +9,52 @@
           Годы надежности
         </h3>
       </div>
-      <ul class="company-history__list">
-        <li
-          v-for="item in history"
-          :key="item.year"
-          :class="[
-            'company-history__item',
-            { 'company-history__item--active': item.active }
-          ]"
-        >
-          <div class="company-history__inner">
-            <div class="company-history__year">
-              {{ item.year }}
-            </div>
 
-            <div class="company-history__content">
-              <div class="company-history__text">
-                {{ item.title }}
-              </div>
-
-              <p
-                v-if="item.description"
-                class="company-history__description"
-              >
-                {{ item.description }}
-              </p>
-            </div>
-          </div>
-          <Button
-            class="company-history__icon-btn"
-            trailing-icon="arrow"
-            size="sm"
-            :icon-size="30"
-          />
-        </li>
-      </ul>
+      <Accordion
+        :items="history"
+        class="company-history__accordion"
+      />
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import Button from '~/shared/ui/Button/button.vue'
+import {Accordion} from '~/shared';
+import { type AccordionItem } from '~/shared';
 
-const history = [
-    { year: '2008', title: 'Начало пути' , description:
-      'Описание для 2008' },
-    {
-        year: '2015',
-        title: 'Стратегический выбор',
-        description:
-      'Партнёрство с производителем подземной техники ООО «Амкодор-Инвар»',
-        active: true
+const history = ref<AccordionItem[]>([
+    { 
+        number: '2008',
+        question: 'Начало пути',
+        content: 'Сотрудничество с компанией Atlas Copco по поддержке горного оборудования'
     },
-    { year: '2016', title: 'Первые результаты', description:
-      'Описание для 2016' },
-    { year: '2022', title: 'Новая технологическая линия', description:
-      'Описание для 2022' },
-    { year: '2023', title: 'Выход на ключевые проекты' , description:
-      'Описание для 2023'},
-    { year: '2024', title: 'Укрепление сервисной базы' , description:
-      'Описание для 2024'}
-];
+    {
+        number: '2015',
+        question: 'Стратегический выбор',
+        content: 'Партнёрство с производителем подземной техники ООО «Амкодор-Инвар»'
+    },
+    { 
+        number: '2016', 
+        question: 'Первые результаты', 
+        content: 'Поставка первых машин производства ООО «Амкодор-Инвар» с сервисным сопровождением в Россию' 
+    },
+    {
+        number: '2022', 
+        question: 'Новая технологическая линия', 
+        content: 'Начало работы с производителем самоходных буровых установок «Группа ФИД»' 
+    },
+    { 
+        number: '2023', 
+        question: 'Выход на ключевые проекты', 
+        content: 'Поставка первых машин для Заказчика — ООО «ЕвроХим-УКК»'
+    },
+    { 
+        number: '2024', 
+        question: 'Укрепление сервисной базы', 
+        content: 'Старт ремонта крупных узлов подземных машин на собственной базе в городе Березники; переборка и восстановление мостов'
+    }
+]);
+
 </script>
 
 <style scoped lang="scss">
@@ -88,110 +73,51 @@ const history = [
     @include headline3;
 
     padding-top: 44px;
-
-    @media (min-width: $breakpoint-tablet) {
-      gap: 44px;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      gap: 60px;
-    }
+    padding-bottom: 60px;
   }
 
-  &__list {
-    display: flex;
-    flex-direction: column;
-    padding-top: 60px;
-  }
+  &__accordion {
+    :deep(.accordion__item) {
+      border-color: $background-4;
+      color: $background-1;
+     
+      &:hover {
+        color: $text-main;
 
-  &__item {
-    display: flex;
-    border-top: 1px solid $background-4;
-    padding: 20px;
-    transition: background-color .3s ease, color .3s ease;
-  }
-
-
-  &__inner {
-    display: flex;
-    gap: 26px;
-    align-items: center;
-
-    @media (min-width: $breakpoint-tablet) {
-      gap: 60px;
-    }
-
-    @media (min-width: $breakpoint-desktop) {
-      gap: 105px;
-    }
-  }
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__year {
-    @include headline3;
-
-    color: $background-4;
-    transition: color .3s;
-  }
-
-  &__text {
-    @include headline5;
-
-    color: $background-4;
-    padding-top: 20px;
-    transition: color .3s;
-  }
-
-  &__description {
-    @include text3;
-
-    max-width: 357px;
-    color: $text-main;
-    opacity: 0;
-    overflow: hidden;
-    transition: all .40s ease;
-  }
-
-  &__icon-btn {
-    background: none !important;
-    border: none !important;
-    padding: 0;
-    color: $accent;
-    margin-left: auto;
-    transition: color .25s ease, transform .25s ease;
-  }
-
-
-  &__item:hover {
-    background-color: $accent;
-
-    .company-history__year,
-    .company-history__text,
-    .company-history__description,
-    .company-history__icon-btn {
-      color: $text-main;
-    }
-
-    .company-history__description {
-      opacity: 1;
-      padding-top: 28px;
-
-      @media (min-width: $breakpoint-tablet) {
-        padding-top: 64px;
-      }
-
-      @media (min-width: $breakpoint-desktop) {
-        padding-top: 64px;
+        .accordion__number,
+        .accordion__question,
+        .accordion__icon {
+          color: $text-main;
+        }
       }
     }
+    
+    :deep(.accordion__item--active) {
+      background-color: $accent;
+    }
 
-    .company-history__icon-btn {
-      transform: rotate(180deg);
+    :deep(.accordion__number) {
+      @include headline3;
+
+      color: $background-4;
+    }
+
+    :deep(.accordion__question) {
+      @include headline5;
+
+      color: $background-4;
+      padding-top: 20px;
+    }
+
+    :deep(.accordion__content) {
+      @include text3;
+    }
+
+    :deep(.accordion__icon) {
+      color: $accent;
     }
   }
 }
 </style>
+
+
