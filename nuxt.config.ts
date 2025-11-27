@@ -30,6 +30,7 @@ export default defineNuxtConfig({
                 dir: './app/assets/icons',
             },
         ],
+        mode: 'svg'
     },
     vite: {
         css: {

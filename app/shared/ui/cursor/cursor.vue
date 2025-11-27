@@ -2,6 +2,7 @@
   <teleport :to="cursorPositionMode.localElement || 'body'">
     <div
       class="cursor"
+      :class="{ 'cursor--local': cursorPositionMode.localElement }"
       :style="cursorStyle"
     />
   </teleport>
@@ -35,7 +36,7 @@ const updateCursorPosition = () => {
             yCoord.value = localY + 'px'
         }
     } else {
-    // обычное глобальное позиционирование
+        // глобальное позиционирование относительно экрана (для fixed)
         xCoord.value = lastMouseX.value + 'px'
         yCoord.value = lastMouseY.value + 'px'
     }
@@ -54,10 +55,25 @@ const requestAnimationFrameUpdate = () => {
     })
 }
 
-const mouseMoveHandler = (event: MouseEvent) => {
-    lastMouseX.value = cursorPositionMode.localElement ? event.clientX : event.pageX
-    lastMouseY.value = cursorPositionMode.localElement ? event.clientY : event.pageY
+const updatePositionFromEvent = (event: MouseEvent) => {
+    lastMouseX.value = event.clientX
+    lastMouseY.value = event.clientY
   
+    if (!needsUpdate.value) {
+        needsUpdate.value = true
+        requestAnimationFrameUpdate()
+    }
+}
+
+const mouseMoveHandler = (event: MouseEvent) => {
+    updatePositionFromEvent(event)
+}
+
+const cursorUpdateHandler = (event: CustomEvent<{ x: number, y: number }>) => {
+    // Обновляем координаты из кастомного события
+    lastMouseX.value = event.detail.x
+    lastMouseY.value = event.detail.y
+    
     if (!needsUpdate.value) {
         needsUpdate.value = true
         requestAnimationFrameUpdate()
@@ -66,12 +82,34 @@ const mouseMoveHandler = (event: MouseEvent) => {
 
 onMounted(() => {
     if (window.matchMedia('(any-pointer:fine)').matches) {
+        // Определяем начальное положение курсора при монтировании
+        // Пытаемся получить текущие координаты из последнего события мыши
+        // Если курсор уже на странице, они будут обновлены при первом движении
+        // Иначе устанавливаем в центр экрана
+        if (lastMouseX.value === 0 && lastMouseY.value === 0) {
+            lastMouseX.value = window.innerWidth / 2
+            lastMouseY.value = window.innerHeight / 2
+            needsUpdate.value = true
+            requestAnimationFrameUpdate()
+        }
+
+        // Отслеживаем изменения cursorPositionMode для обновления позиции
+        watchEffect(() => {
+            if (cursorPositionMode.localElement) {
+                // При переключении в локальный режим обновляем позицию
+                needsUpdate.value = true
+                requestAnimationFrameUpdate()
+            }
+        })
+
         document.addEventListener('mousemove', mouseMoveHandler)
+        document.addEventListener('cursor:update', cursorUpdateHandler as EventListener)
     }
 })
 
 onUnmounted(() => {
     document.removeEventListener('mousemove', mouseMoveHandler)
+    document.removeEventListener('cursor:update', cursorUpdateHandler as EventListener)
     if (rafId.value !== null) {
         cancelAnimationFrame(rafId.value)
     }
@@ -93,6 +131,10 @@ onUnmounted(() => {
     left: v-bind(xCoord);
     transition: all 0.3s ease-in-out, top 0s, left 0s;
     will-change: top, left;
+
+    &:not(.cursor--local) {
+      position: fixed;
+    }
   }
 }
 </style>
