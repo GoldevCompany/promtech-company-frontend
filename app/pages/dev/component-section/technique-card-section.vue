@@ -19,32 +19,26 @@ const templateCardInfo: MachineCard = {
       <div class="demo-item technique-grid-template">
         <TechniqueCard :card="templateCardInfo" />
         <TechniqueCard :card="templateCardInfo" />
+        <TechniqueCard :card="templateCardInfo" />
+        <TechniqueCard :card="templateCardInfo" />
       </div>
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
-$columns: 12;
-$gap: 20px;
-
 .technique-grid-template {
-  $col-width: 295px;
-
   display: grid;
-  grid-template-columns: repeat($columns, $col-width);
-  gap: $gap;
+  grid-template-columns:1fr;
+  row-gap: 40px;
 
   @media (min-width: $breakpoint-tablet) {
-    $col-width: 350px;
-
-    grid-template-columns: repeat($columns, $col-width);
+    grid-template-columns:1fr 1fr;
+    column-gap: 20px;
   }
 
   @media (min-width: $breakpoint-desktop) {
-    $col-width: 467px;
-
-    grid-template-columns: repeat($columns, $col-width);
+    grid-template-columns:1fr 1fr 1fr;
   }
 }
 

@@ -68,7 +68,7 @@ const props = defineProps<TechniqueCardProps>();
       background-image: linear-gradient($divider, $divider);
       background-repeat: no-repeat;
       background-position: center center;
-      background-size: calc(100% - 107px) 100%;
+      background-size: 75% 100%;
     }
 
     &__button {
