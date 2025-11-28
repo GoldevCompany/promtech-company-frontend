@@ -50,11 +50,11 @@ const endTransition = (el: Element) => {
 const itemsRefs = useTemplateRef('accordionHeader')
 
 const itemStyles = reactive({
-    paddingLeft: '0',
-    paddingRight: '0'
+    marginLeft: '0',
+    marginRight: '0'
 })
 
-const calculateItemPadding = () => {
+const calculateItemMargin = () => {
     console.log('resize is working')
     const item = itemsRefs.value?.[0]
 
@@ -64,14 +64,16 @@ const calculateItemPadding = () => {
     const iconWidth = item.querySelector('.accordion__icon')?.getBoundingClientRect().width
     const gap = getComputedStyle(item).gap
 
-    itemStyles.paddingLeft = `calc(${numberWidth}px + ${gap})`
-    itemStyles.paddingRight = `calc(${iconWidth}px + ${gap})`
+    
+    itemStyles.marginLeft = `calc(${numberWidth}px + ${gap})`
+    itemStyles.marginRight = `calc(${iconWidth}px + ${gap})`
 }
 
 onMounted(() => {
-    calculateItemPadding()
-    window.addEventListener('resize', calculateItemPadding)
+    calculateItemMargin()
+    window.addEventListener('resize', calculateItemMargin)
 })
+
 </script>
 
 <template>

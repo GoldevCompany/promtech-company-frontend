@@ -148,12 +148,16 @@ const history = ref<AccordionItem[]>([
     }
 
     :deep(.accordion__content) {
-      padding-bottom: 0;
-      padding-top: 28px;
-      max-width: 160px;
-
+      box-sizing: box;
+      width: 100%;
+      max-width: 160px; 
+    
       @media (min-width: $breakpoint-tablet) {
-        padding-top: 64px;
+        max-width: 370px; 
+      
+      }
+
+      @media (min-width: $breakpoint-desktop) {
         max-width: 370px;
       }
 
