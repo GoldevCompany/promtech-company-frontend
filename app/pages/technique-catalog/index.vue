@@ -1,10 +1,24 @@
 <template>
-    <h2>Техника</h2>
+  <div class="container">
+    <h1
+      class="page-info__title"
+      :style="{ 'margin-bottom': '20px' }"
+    >
+      Техника
+    </h1>
     <ul>
-        <li v-for="n in 10">
-            <NuxtLink :to="`/technique-catalog/${n}`">
-                Техника {{ n }}
-            </NuxtLink>
-        </li>
+      <li
+        v-for="n in 10"
+        :key="n"
+        :style="{ 'margin-bottom': '20px' }"
+      >
+        <NuxtLink
+          :to="`/components-catalog/${n}`"
+          class="section-label"
+        >
+          Техника {{ n }}
+        </NuxtLink>
+      </li>
     </ul>
+  </div>
 </template>

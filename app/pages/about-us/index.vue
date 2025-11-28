@@ -1,12 +1,11 @@
 <template>
-    <section>
-
-        <ProductionSlider/>
-    </section>
+  <section>
+    <ProductionSlider />
+    <HeroSection />
+    <EquipmentOverview />
+  </section>
 </template>
 
-
 <script setup lang="ts">
-import {ProductionSlider} from '~/widgets/about-us';
-
+import { ProductionSlider, HeroSection, EquipmentOverview } from '~/widgets/about-us';
 </script>

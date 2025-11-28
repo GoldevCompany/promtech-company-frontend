@@ -1,22 +1,37 @@
 <template>
-  <footer class="footer" role="contentinfo">
+  <footer
+    class="footer"
+    role="contentinfo"
+  >
     <div class="footer__inner container">
       <nav class="footer__nav">
-        <Link v-for="link in links" :key="link.to" v-bind="link" />
+        <Link
+          v-for="link in links"
+          :key="link.to"
+          v-bind="link"
+        />
       </nav>
 
       <div class="footer__contacts">
-        <a href="mailto:pt-company@mail.ru" class="footer__contact-link">
+        <a
+          v-cursor="{ stylePreset: 'colorBurn' }"
+          href="mailto:pt-company@mail.ru"
+          class="footer__contact-link"
+        >
           Email: pt-company@mail.ru
         </a>
-        <a href="tel:+79089200889" class="footer__contact-link">
+        <a
+          v-cursor="{ stylePreset: 'colorBurn' }"
+          href="tel:+79089200889"
+          class="footer__contact-link"
+        >
           Телефон: +7 (908) 920 0889
         </a>
       </div>
 
-      <NuxtLink to="/">
+      <Link to="/">
         <Logo class="footer__logo" />
-      </NuxtLink>
+      </Link>
     </div>
   </footer>
 </template>
@@ -26,11 +41,15 @@ import { Logo, Link } from '@/shared'
 
 
 const links = [
-  { to: '/', label: 'Главная' },
-  { to: '/technique', label: 'Техника' },
-  { to: '/components', label: 'Комплектующие' },
-  { to: '/contacts', label: 'Контакты' },
-]
+    { label: 'Сторибук', to: '/dev' },
+    { label: 'Главная', to: '/' },
+    { label: 'О нас', to: '/about-us' },
+    { label: 'Техника', to: '/technique-catalog' },
+    { label: 'Комплектующие', to: '/components-catalog' },
+    { label: 'Контакты', to: '/contacts' },
+    { label: 'Корзина', to: '/basket' },
+    { label: 'Оставить заявку', to: '#' },
+];
 </script>
 
 <style scoped lang="scss">
@@ -64,7 +83,9 @@ const links = [
 
   &__contact-link {
     display: block;
+
     @include link;
+
     text-decoration: none;
     color: inherit;
   }

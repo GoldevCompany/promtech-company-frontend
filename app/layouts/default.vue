@@ -4,7 +4,7 @@
     <main class="main-content">
       <slot />
     </main>
-    <Feedback/>
+    <Feedback />
     <Footer />
   </div>
 </template>
@@ -18,7 +18,6 @@ import {Header, Footer, Feedback} from '~/widgets'
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: $background-1;
   color: white;
 }
 

@@ -1,28 +1,24 @@
 <template>
   <div class="dev-page">
-
     <div class="dev-page__header">
       <h1>Компоненты проекта</h1>
       <p>Страница для тестирования и отладки UI компонентов</p>
-      <p class="dev-page__hint">
-        💡 Измените размер окна браузера, чтобы увидеть адаптивность header выше
-      </p>
     </div>
 
-    <div class="dev-page__content">
+    <div class="dev-page__content container">
       <!-- Cursor demo -->
       <CursorSection />
 
       <!-- Link Component -->
-      <CheckboxSection/>
+      <CheckboxSection />
       <!-- Link Component -->
       <LinkSection />
 
       <!-- FileInput Component -->
-      <FileInputSection/>
+      <FileInputSection />
 
       <!-- TextField Component -->
-      <TextFieldSection/>
+      <TextFieldSection />
 
       <!-- promtech-icon Component -->
       <IconSection />
@@ -35,16 +31,13 @@
 
       <!-- Main Page Hero New Component -->
       <MainPageHeroNewSection />
-    </div>
-    <div class="dev-page__footer">
-      <div class="container">
-        <h2 class="component-section__title">Подвал сайта(footer)</h2>
-        <p class="component-section__description">
-          Компонент подвала сайта, для просмотра возможностей адаптивности
-          следует
-          изменить ширину окна браузера
-        </p>
-      </div>
+
+      <MapSection />
+
+      <!-- ExtraService Component -->
+      <ExtraService />
+
+      <AdressSection />
     </div>
   </div>
 </template>
@@ -56,9 +49,11 @@ import LinkSection from './component-section/link-section.vue';
 import ButtonSection from './component-section/button-section.vue';
 import MainPageHeroSection from './component-section/main-page-hero.vue';
 import MainPageHeroNewSection from './component-section/main-page-hero-new.vue';
-import TextFieldSection from "~/pages/dev/component-section/text-field-section.vue";
-import FileInputSection from "~/pages/dev/component-section/file-input-section.vue";
-import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue";
+import TextFieldSection from '~/pages/dev/component-section/text-field-section.vue';
+import FileInputSection from '~/pages/dev/component-section/file-input-section.vue';
+import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
+import { AdressSection, MapSection } from '~/widgets/contacts';
+import {ExtraService} from '~/widgets/main-page';
 </script>
 
 <style lang="scss">
@@ -76,28 +71,18 @@ import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue"
 
     h1 {
       @include headline3;
+
       margin-bottom: 16px;
     }
 
     p {
       @include text3;
+
       opacity: 0.9;
     }
   }
 
-  &__hint {
-    margin-top: 24px;
-    padding: 16px 24px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    @include text3;
-  }
-
   &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px 40px;
     display: flex;
     flex-direction: column;
     gap: 60px;
@@ -112,20 +97,22 @@ import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue"
 }
 
 .component-section {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255 255 255 / 10%);
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 40px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgb(0 0 0 / 10%);
 
   &__title {
     @include headline4;
+
     margin-bottom: 12px;
     color: #fff;
   }
 
   &__description {
     @include text3;
+
     margin-bottom: 32px;
     opacity: 0.9;
   }
@@ -133,36 +120,39 @@ import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue"
 
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
   gap: 24px;
   margin-bottom: 32px;
 }
 
 .demo-item {
-  background: rgba(255, 255, 255, 0.15);
+  width: 100%;
+  background: rgb(255 255 255 / 15%);
   padding: 24px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgb(255 255 255 / 20%);
   transition: all 0.3s ease;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(255 255 255 / 20%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 20%);
   }
 
   h3 {
     @include headline5;
+
     margin-bottom: 16px;
     color: #fff;
   }
 
   code {
     @include text4;
+
     display: block;
     margin-top: 12px;
     padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgb(0 0 0 / 30%);
     border-radius: 6px;
     color: #ffd700;
   }
@@ -173,43 +163,45 @@ import CheckboxSection from "~/pages/dev/component-section/checkbox-section.vue"
   align-items: center;
   justify-content: center;
   padding: 32px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255 255 255 / 10%);
   border-radius: 8px;
   font-size: 32px;
 
   :deep(svg) {
     width: 48px;
     height: 48px;
-    fill: currentColor;
+    fill: currentcolor;
   }
 }
 
 .code-details {
   margin-top: 24px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgb(0 0 0 / 20%);
   border-radius: 8px;
   overflow: hidden;
 
   summary {
     @include text3;
+
     padding: 16px 24px;
     cursor: pointer;
     user-select: none;
     transition: background 0.2s ease;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.3);
+      background: rgb(0 0 0 / 30%);
     }
   }
 
   pre {
     margin: 0;
     padding: 24px;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgb(0 0 0 / 40%);
     overflow-x: auto;
 
     code {
       @include text4;
+
       color: #f8f8f2;
     }
   }
