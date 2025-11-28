@@ -1,8 +1,11 @@
 <template>
-  <HeroSection />
-  <EquipmentOverview />
+  <section>
+    <HeroSection />
+    <EquipmentOverview />
+    <ProductionSlider />
+  </section>
 </template>
 
 <script setup lang="ts">
-import { HeroSection, EquipmentOverview } from '~/widgets/about-us';
+import { ProductionSlider, HeroSection, EquipmentOverview } from '~/widgets/about-us';
 </script>
