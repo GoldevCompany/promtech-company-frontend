@@ -95,7 +95,7 @@ const isMenuOpen = ref(false)
 
 <style scoped lang="scss">
 .header {
-  background: $background-6;
+  background: $background-8;
   color: $text-main;
   width: 100%;
   position: sticky;
