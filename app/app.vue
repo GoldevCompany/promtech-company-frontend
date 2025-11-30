@@ -5,8 +5,10 @@ import { Cursor } from '~/shared';
 
 <template>
   <NuxtLayout>
-    <NuxtRouteAnnouncer />
-    <NuxtPage />
-    <Cursor />
+    <div>
+      <NuxtRouteAnnouncer />
+      <NuxtPage />
+      <Cursor />
+    </div>
   </NuxtLayout>
 </template>
