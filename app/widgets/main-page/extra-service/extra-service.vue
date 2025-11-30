@@ -137,18 +137,16 @@
   }
 
   &__image-first {
-    width: 100%;
-    height: auto;
     object-fit: cover;
-
-    @media (max-width: $breakpoint-tablet) {
-      height: 298px;
+    width: 100%;
+    
+    @media (min-width: $breakpoint-tablet) {
+      height: auto;
+      padding-top: 32px;
     }
 
     @media (min-width: $breakpoint-desktop) {
       flex: 1;
-      min-width: 0;
-      object-fit: cover;
       height: 73%;
       padding-top: 5%;
     }

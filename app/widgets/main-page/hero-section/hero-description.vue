@@ -59,8 +59,7 @@ const backgroundStyles = computed(() => {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: brightness(0.2) contrast(1.1) saturate(0.7);
-    transform: scale(2);
+    transform: scale(1.4, 2);
   }
 
   &__content {
