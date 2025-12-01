@@ -217,5 +217,6 @@ $transition-speed: 0.4s;
       padding-top: 150px;
     }
   }
+  
 }
 </style>
