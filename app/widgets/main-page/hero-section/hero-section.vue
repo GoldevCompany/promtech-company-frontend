@@ -55,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+import { useResizeObserver } from '@vueuse/core'
 import HeroDescription from './hero-description.vue'
 
 const videoEnded = ref(false)
@@ -92,13 +93,7 @@ const checkOverflow = async () => {
     shiftTitle.value = shiftValue > 0 ? shiftValue : 0
 }
 
-const resizeObserver = new ResizeObserver(checkOverflow)
-
-watch(heroMediaRef, (hero) => {
-    if(!hero) return
-  
-    resizeObserver.observe(hero)
-})
+useResizeObserver(heroMediaRef, checkOverflow)
 </script>
 
 <style lang="scss" scoped>
