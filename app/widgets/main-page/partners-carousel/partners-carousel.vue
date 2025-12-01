@@ -73,7 +73,6 @@ const carouselItems = Array(4).fill(baseLogos).flat()
     display: flex;
     overflow: hidden;
     user-select: none;
-    gap: var(--gap);
   }
 
   &__group {
@@ -82,6 +81,7 @@ const carouselItems = Array(4).fill(baseLogos).flat()
     align-items: center;
     min-width: 100%;
     gap: var(--gap);
+    padding-right: var(--gap);
     animation: scroll-left 20s linear infinite;
   }
 
@@ -104,7 +104,7 @@ const carouselItems = Array(4).fill(baseLogos).flat()
   }
 
   to {
-    transform: translateX(calc(-100% - var(--gap)));
+    transform: translateX(-100%);
   }
 }
 </style>
