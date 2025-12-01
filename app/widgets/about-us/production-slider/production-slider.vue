@@ -75,8 +75,11 @@ import Button from '~/shared/ui/button/button.vue';
 const images = [
     '/images/aboutUs-slider/slide1.png',
     '/images/aboutUs-slider/slide2.png',
+    '/images/aboutUs-slider/slide5.png',
+    '/images/aboutUs-slider/slide4.png',
     '/images/aboutUs-slider/slide3.png',
-    '/images/aboutUs-slider/slide4.png'
+    '/images/aboutUs-slider/slide6.png'
+
 ];
 </script>
 
