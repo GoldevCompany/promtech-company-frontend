@@ -197,11 +197,14 @@ useResizeObserver(heroMediaRef, checkOverflow)
     @media (min-width: $breakpoint-tablet) {
       padding-top: 12px;
       padding-bottom: 12px;
+      -webkit-text-stroke: 1px $text-main;
+      paint-order: stroke fill;
     }
 
     @media (min-width: $breakpoint-desktop) {
       padding-top: 29px;
       padding-bottom: 22px;
+      -webkit-text-stroke: 2px $text-main;
     }
   }
 }
