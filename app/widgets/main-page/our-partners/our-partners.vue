@@ -48,7 +48,7 @@
         <!-- ЛЕВЫЙ БАРАБАН (Едет ВВЕРХ) -->
         <div
           class="partners-mobile__reel partners-mobile__reel--up"
-          :class="{ 'is-animating': isMobileAnimating }"
+          :class="{ 'partners-mobile__reel--animating': isMobileAnimating }"
           :style="{ transitionDelay: `${slotIndex * 150}ms` }"
         >
           <div class="partners-mobile__cell">
@@ -68,7 +68,7 @@
         <!-- ПРАВЫЙ БАРАБАН (Едет ВНИЗ) -->
         <div
           class="partners-mobile__reel partners-mobile__reel--down"
-          :class="{ 'is-animating': isMobileAnimating }"
+          :class="{ 'partners-mobile__reel--animating': isMobileAnimating }"
           :style="{ transitionDelay: `${slotIndex * 150 + COLUMN_DELAY}ms` }"
         >
           <div class="partners-mobile__cell">
@@ -198,7 +198,6 @@ onUnmounted(() => {
 
   &__title {
     margin: 0 0 20px;
-    text-align: center;
 
     @media (min-width: $breakpoint-tablet) {
       text-align: left;
@@ -290,7 +289,7 @@ onUnmounted(() => {
     &--up {
       transform: translateY(0);
 
-      &.is-animating {
+      &.partners-mobile__reel--animating {
         transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
         transform: translateY(-50%);
       }
@@ -299,7 +298,7 @@ onUnmounted(() => {
     &--down {
       transform: translateY(-50%);
 
-      &.is-animating {
+      &.partners-mobile__reel--animating {
         transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
         transform: translateY(0);
       }
