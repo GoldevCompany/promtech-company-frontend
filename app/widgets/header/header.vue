@@ -1,7 +1,6 @@
 <template>
   <header
     class="header"
-    :class="{ 'header--fixed': isHomePage }"
     role="banner"
   >
     <div class="container header__container">
@@ -73,8 +72,6 @@
 <script setup lang="ts">
 import { Button, PromtechIcon, Link, Logo } from '@/shared'
 
-const isHomePage = computed(() => useRoute().path === '/')
-
 const links = [
     { label: 'Сторибук', to: '/dev' },
     { label: 'Главная', to: '/' },
@@ -92,12 +89,11 @@ export interface HeaderLinkProps {
 }
 
 const isMenuOpen = ref(false)
-
 </script>
 
 <style scoped lang="scss">
 .header {
-  background: $background-6;
+  background: $background-1;
   color: $text-main;
   width: 100%;
   position: sticky;
@@ -149,7 +145,7 @@ const isMenuOpen = ref(false)
     top: 100%;
     left: 0;
     right: 0;
-    background: $background-6;
+    background: $background-1;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
