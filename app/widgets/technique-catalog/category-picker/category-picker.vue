@@ -10,9 +10,7 @@ defineProps<CategoryPickerProps>();
 const activeId = defineModel<Category['id'] | null>({ required: true });
 
 const selectCategory = (id: Category['id']) => {
-    if (activeId.value != id) {
-        activeId.value = id;
-    }
+    activeId.value = id;
 };
 
 /**
