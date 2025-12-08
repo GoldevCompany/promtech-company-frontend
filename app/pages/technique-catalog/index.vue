@@ -34,24 +34,39 @@
 import {CategoryPicker} from '~/widgets/technique-catalog';
 import {useCatalogStore} from '~/entities';
 import {TechniqueCard} from '~/shared';
+import type {Category} from '~/shared/types';
+
+const route = useRoute();
+const router = useRouter();
 
 const catalogStore = useCatalogStore();
-
 const { categories, machinesInCurrentCategory } = storeToRefs(catalogStore);
-const selectedCategoryId = ref<number | string | null>(categories.value?.[0]?.id ?? null);
+
+const initialId = route.query.category
+    ? (route.query.category as Category['id'])
+    : null;
+const selectedCategoryId = ref<Category['id'] | null>(initialId);
 
 await useAsyncData('categories', async () => {
     if (!categories.value?.length) {
         await catalogStore.getCategories();
-        if (!selectedCategoryId.value && categories.value?.length) {
-            selectedCategoryId.value = categories.value[0]?.id ?? null;
-        }
     }
     return true;
 });
 
+watchEffect(() => {
+    if (categories.value?.length && !selectedCategoryId.value) {
+        selectedCategoryId.value = categories.value[0]?.id ?? null;
+    }
+});
+
 watch(selectedCategoryId, async (newId) => {
     if (newId) {
+        await router.replace({
+            query: {
+                category: newId
+            }
+        });
         await catalogStore.fetchCategoryMachines(newId.toString());
     }
 });
@@ -75,7 +90,7 @@ watch(selectedCategoryId, async (newId) => {
       padding-top: 128px;
       padding-bottom: 128px;
     }
-    
+
     &__subtitle {
       width: 55%;
 

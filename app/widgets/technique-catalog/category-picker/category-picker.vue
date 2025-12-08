@@ -7,12 +7,10 @@ export type CategoryPickerProps = {
 
 defineProps<CategoryPickerProps>();
 
-const activeId = defineModel<number | string | null>({ required: true });
+const activeId = defineModel<Category['id'] | null>({ required: true });
 
-const selectCategory = (id: number | string) => {
-    if (activeId.value != id) {
-        activeId.value = id;
-    }
+const selectCategory = (id: Category['id']) => {
+    activeId.value = id;
 };
 
 /**
@@ -34,7 +32,7 @@ const typo = (text: string) => {
       v-for="category in categories"
       :key="category.id"
       class="category-list__item"
-      :class="{ 'category-list__item--active': activeId === category.id }"
+      :class="{ 'category-list__item--active': activeId?.toString() === category.id.toString() }"
       @click="selectCategory(category.id)"
     >
       <span class="category-list__text">
