@@ -25,21 +25,24 @@ const activeId = defineModel<number | string | null>({ required: true });
         <span class="category-list__title">{{ category.name }}</span>
       </div>
 
-      <div class="category-list__actions">
-        <transition name="fade">
-          <a
-            v-show="activeId === category.id"
+      <transition name="fade">
+        <div
+          v-show="activeId === category.id"
+          class="category-list__actions"
+        >
+          <NuxtLink
+
             class="category-list__details-btn"
-            href="/technique-catalog"
+            :to="{ path: '/technique-catalog', query: { category: category.id } }"
           >
             <span class="category-list__btn-text">подробнее</span>
             <PromtechIcon
               name="arrow-2"
               :icon-size="25"
             />
-          </a>
-        </transition>
-      </div>
+          </NuxtLink>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -82,7 +85,7 @@ const activeId = defineModel<number | string | null>({ required: true });
       gap: 5px;
     }
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: $breakpoint-desktop) {
       gap: 76px;
     }
 
