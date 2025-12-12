@@ -5,7 +5,7 @@ export type TechniqueDescriptionProps = Pick<MachineFullCard, 'applying' | 'desc
 const props = defineProps<TechniqueDescriptionProps>();
 
 const LIMIT = 4;
-const hasHiddenItems = computed(() => props.description && props.description.length > LIMIT);
+const hasHiddenItems = computed(() => props.description.length > LIMIT);
 
 const isExpanded = ref(false);
 const handleExpand = () => {
@@ -35,13 +35,14 @@ const handleExpand = () => {
           class="technique-description__list-item"
         >
           {{ item }}
-          <span
+          <button
             v-show="!isExpanded && index === LIMIT - 1 && hasHiddenItems"
+            v-cursor="{ stylePreset: 'colorBurn' }"
             class="technique-description__read-more"
             @click="handleExpand"
           >
             ...читать далее
-          </span>
+          </button>
         </li>
       </ul>
     </div>
@@ -70,7 +71,6 @@ const handleExpand = () => {
   }
 
   &__list-wrapper {
-    list-style: disc;
     padding-left: 1.5rem;
   }
 
