@@ -32,6 +32,8 @@
 
       <TechniqueCardSection />
 
+      <TechniqueDescriptionSection />
+
       <!-- ExtraService Component -->
       <ExtraService />
 
@@ -63,7 +65,8 @@ import FileInputSection from '~/pages/dev/component-section/file-input-section.v
 import CheckboxSection from '~/pages/dev/component-section/checkbox-section.vue';
 import TechniqueCardSection from '~/pages/dev/component-section/technique-card-section.vue';
 import { AdressSection, MapSection } from '~/widgets/contacts';
-import { ExtraService } from '~/widgets/main-page';
+import {ExtraService} from '~/widgets/main-page';
+import TechniqueDescriptionSection from '~/pages/dev/component-section/technique-description-section.vue';
 </script>
 
 
